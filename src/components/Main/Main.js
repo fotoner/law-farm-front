@@ -1,11 +1,14 @@
-import React from 'react'
+import React from 'react';
+import "./Main.css" 
+
 
 const Main = () => {
     return (
-        <div>
-            this is main 
+        <div className ="Main">
+             
         </div>
-    )
+    );
+
 }
 
-export default Main
+export default Main;
