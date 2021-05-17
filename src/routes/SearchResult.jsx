@@ -72,7 +72,7 @@ const SearchResult = () => {
   useEffect(() => {
     if (query) {
       axios
-        .get('http://d9432eb2b1f7.ngrok.io/ml/search', {
+        .get('http://9e646106ff76.ngrok.io/ml/search', {
           params: {
             query: query,
             target: "article",
@@ -101,7 +101,9 @@ const SearchResult = () => {
                 <div className="content">
                   <div className="type">
                     {
-                      val.about.text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]
+                      val.about.text.length > 0?
+                        val.about.text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]:
+                        val.about.text
                     }
                   </div>
                   <div className="paragraphCount">

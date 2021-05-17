@@ -1,10 +1,11 @@
 import {useEffect, useState} from "react";
 import styled from "styled-components";
 
-import SearchInput from "../components/SearchInput";
 import {useParams} from "react-router-dom"
 import axios from "axios";
 import colors from "../lib/colors";
+
+import RelateArticle from "../components/RelateArticle";
 
 const Title = styled.div`
 
@@ -21,7 +22,7 @@ const SubTitle = styled.div`
 `
 
 const Article = styled.div`
-  margin: 100px 0;
+  margin-top: 100px;
   width: 100%;
   box-sizing: border-box;
   padding: 20px;
@@ -39,12 +40,12 @@ const Paragraph = styled.div`
 
 const ArticleDetail = () => {
   const [document, setDocument] = useState(null)
-  const { key } = useParams()
+  const {key} = useParams()
 
   useEffect(() => {
     if (key) {
       axios
-        .get('http://d9432eb2b1f7.ngrok.io/law/article', {
+        .get('http://9e646106ff76.ngrok.io/law/article', {
           params: {
             key: key,
           }
@@ -57,27 +58,34 @@ const ArticleDetail = () => {
   }, [key])
 
   return (
-    <Article>
-      <Title>{key}</Title>
-      <Text>
+    <>
+      <Article>
+        <Title>{key}</Title>
+        <Text>
+          {
+            document &&
+            (document.result.text.length > 0?
+                document.result.text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]:
+                document.result.text
+            )
+          }
+        </Text>
         {
-          document&&
-          document.result.text.match(/(\((.*?)\)(.*)?| 삭제 <(.*?)>(.*?))/g)[0]
-        }
-      </Text>
-      {
-        document&&document.result.paragraphs.length > 0 &&
-        document.result.paragraphs.map((val, idx) =>
-        <Paragraph key={idx}>
-          <SubTitle>
-            {val.paragraph}
-          </SubTitle>
-          <Text>
-            {val.text.replace(document.result.text, "")}
-          </Text>
-        </Paragraph>
-      )}
-    </Article>
+          document && document.result.paragraphs.length > 0 &&
+          document.result.paragraphs.map((val, idx) =>
+            <Paragraph key={idx}>
+              <SubTitle>
+                {val.paragraph}
+              </SubTitle>
+              <Text>
+                {val.text.replace(document.result.text, "")}
+              </Text>
+            </Paragraph>
+          )}
+      </Article>
+
+      <RelateArticle docKey={key} target="article"/>
+    </>
   );
 }
 export default ArticleDetail;

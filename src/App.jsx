@@ -1,5 +1,6 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { useEffect } from "react";
+
+import { Route, Switch, useLocation } from "react-router-dom";
 import styled from 'styled-components';
 
 import Home from "./routes/Home";
@@ -22,6 +23,14 @@ const Main = styled.div`
 `
 
 const App = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+  }, [location]);
+
+  
   return (
     <Main>
       <Switch >
