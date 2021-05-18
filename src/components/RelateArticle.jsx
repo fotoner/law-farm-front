@@ -59,7 +59,7 @@ const RelateArticle = ({docKey, size=5, target="article"}) => {
   useEffect(() => {
     if (docKey) {
       axios
-        .get(`http://9e646106ff76.ngrok.io/ml/${target}`, {
+        .get(`http://cd32e1fb9b29.ngrok.io/ml/${target}`, {
           params: {
             key: docKey,
             size: size
@@ -74,7 +74,7 @@ const RelateArticle = ({docKey, size=5, target="article"}) => {
 
   return (
     <ResultContainer>
-      <Title>연관된 법률</Title>
+      <Title>관련 법률</Title>
       {
         document &&
         document.result.map((val, idx) =>

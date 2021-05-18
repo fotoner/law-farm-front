@@ -72,7 +72,7 @@ const SearchResult = () => {
   useEffect(() => {
     if (query) {
       axios
-        .get('http://9e646106ff76.ngrok.io/ml/search', {
+        .get('http://cd32e1fb9b29.ngrok.io/ml/search', {
           params: {
             query: query,
             target: "article",

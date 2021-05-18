@@ -45,7 +45,7 @@ const ArticleDetail = () => {
   useEffect(() => {
     if (key) {
       axios
-        .get('http://9e646106ff76.ngrok.io/law/article', {
+        .get('http://cd32e1fb9b29.ngrok.io/law/article', {
           params: {
             key: key,
           }
