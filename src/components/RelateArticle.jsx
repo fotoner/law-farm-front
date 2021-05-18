@@ -59,7 +59,7 @@ const RelateArticle = ({docKey, size=5, target="article"}) => {
   useEffect(() => {
     if (docKey) {
       axios
-        .get(`http://cd32e1fb9b29.ngrok.io/ml/${target}`, {
+        .get(`/ml/${target}`, {
           params: {
             key: docKey,
             size: size
