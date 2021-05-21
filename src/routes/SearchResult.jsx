@@ -5,9 +5,11 @@ import queryString from "query-string";
 import axios from "axios";
 import colors from "../lib/colors";
 import {useLocation} from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Result = styled.div`
-  margin-top: 48px;
+  margin-top: 100px;
   width: 100%;
   max-width: 700px;
 `
@@ -88,6 +90,7 @@ const SearchResult = () => {
 
   return (
     <Result>
+      <Header/>
       <Title>'{query}' 검색결과</Title>
       <ResultContainer>
         {
@@ -117,6 +120,7 @@ const SearchResult = () => {
             </ResultItem>
           )}
       </ResultContainer>
+      <Footer/>
     </Result>
   )
 }
