@@ -8,7 +8,7 @@ const Wrapper = styled.section`
     position: fixed;
     align-items: center;
     justify-content: center;
-    height: 60px;
+    height: 50px;
     width: 100%;
     left:0;
     top:0;
@@ -26,7 +26,10 @@ const Wrapper = styled.section`
 `
 
 const Title = styled.h1`
-  margin-left : 10px;
+  display : flex;
+  flex : 1;
+  left : 50;
+  margin-left : 30px;
   font-size : 22px;
   color: white;
   font-weight: bold;
@@ -40,6 +43,7 @@ const Button = styled.button`
     background-color:#f1f1f1;
   min-width:120px;
   margin-left : 1rem;
+  margin-right: 10px;
   align-items:center;
   right:0;
   justify-content: between;
