@@ -40,7 +40,7 @@ const Home = () => {
       <Input>
         <SearchInput/>
       </Input>
-      <Footer/>
+      <Footer/>git
     </Content>
      
   
