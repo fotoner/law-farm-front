@@ -3,7 +3,8 @@ import SearchInput from "../components/SearchInput";
 import colors from "../lib/colors";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
+import Login from "./Login";
+import RegisterPage from"./RegisterPage";
 
 const Content = styled.div`
   display: flex;
@@ -32,7 +33,6 @@ const Input =  styled.div`
 const Home = () => {
 
   return (
-  
     <Content>
       <Header/>
       <Title>로우팜</Title>
@@ -43,7 +43,6 @@ const Home = () => {
       <Footer/>
     </Content>
      
-  
 
   );
 }

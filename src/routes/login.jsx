@@ -1,15 +1,11 @@
-import styled from "styled-components";
 import React from 'react';
-import colors from "../lib/colors";
+const Login = () =>{
+
+   return(
+     <div>로그인 페이지</div>
+   )
+};
 
 
 
-const login = () => {
-
-    return (
-    
-       <div> 로그인 </div>
-  
-    );
-  }
-  export default login;
+export default Login;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from 'react';
 import colors from "../lib/colors";
-
+import { Route, Switch, useLocation,Link,withRouter, Router } from "react-router-dom";
 const Wrapper = styled.section`
     /* 레이아웃 */
     display: flex;
@@ -14,13 +14,11 @@ const Wrapper = styled.section`
     top:0;
     top: 0px;
     z-index: 5;
-
     /* 색상 */
     background: ${colors.highlightColor};
     color: white;
     border-bottom: 1px solid ${colors.highlightColor};
     box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.20);
-
     /* 폰트 */
     font-size: 1.5rem;
 `
@@ -33,7 +31,6 @@ const Title = styled.h1`
   font-size : 22px;
   color: white;
   font-weight: bold;
-
 `;
 
 const Button = styled.button`
@@ -50,14 +47,21 @@ const Button = styled.button`
 `;
 
 
-const Header = () => (
-  
-     <Wrapper>
-        <Title>Law-farm</Title>
-        <Button>로그인</Button>
-        <Button>회원가입</Button>
-     </Wrapper>
- 
-);
+const Header = ({history}) => {
 
-export default Header;
+  return(
+
+     <Wrapper>
+       <Title onClick={()=>{history.push("/")}}>Law-Farm</Title>
+       <Button onClick={()=>{history.push("/RegisterPage")}}>회원가입</Button>
+       <Button onClick={()=>{history.push("/Login")}}>로그인</Button>
+     </Wrapper>
+
+
+  )
+  
+    
+ }
+
+
+export default withRouter(Header);

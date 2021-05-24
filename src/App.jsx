@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import Home from "./routes/Home";
 import SearchResult from "./routes/SearchResult";
 import ArticleDetail from "./routes/ArticleDetail";
+import RegisterPage from "./routes/RegisterPage";
+import Login from "./routes/Login";
 
 const Main = styled.div`
   display: flex;
@@ -31,13 +33,15 @@ const App = () => {
 
   
   return (
-    <Main>
-      <Switch >
-        <Route path="/" component={Home} exact/>
-        <Route path="/result" component={SearchResult} exact/>
-        <Route path="/article/@:key" component={ArticleDetail} exact />
-      </Switch>
-    </Main>
+  <Main>
+    <Switch >
+      <Route path="/" component={Home} exact/>
+      <Route path="/RegisterPage" component ={RegisterPage}/>
+      <Route path="/Login" component ={Login}/>
+      <Route path="/result" component={SearchResult} exact/>
+      <Route path="/article/@:key" component={ArticleDetail} exact />
+    </Switch>
+  </Main>
   );
 } 
 
