@@ -11,7 +11,6 @@ const Wrapper = styled.section`
     height: 50px;
     width: 100%;
     left:0;
-    top:0;
     top: 0px;
     z-index: 5;
     /* 색상 */
@@ -27,7 +26,7 @@ const Title = styled.h1`
   display : flex;
   flex : 1;
   left : 50;
-  margin-left : 30px;
+  margin-left : 20px;
   font-size : 22px;
   color: white;
   font-weight: bold;
@@ -36,25 +35,31 @@ const Title = styled.h1`
 const Button = styled.button`
   border-radius:0.5rem;
   font-size : 1rem;
-  color: black;
-    background-color:#f1f1f1;
-  min-width:120px;
-  margin-left : 1rem;
-  margin-right: 10px;
+  color: Black;
+  background-color:#f1f1f1;
+  min-width: 130px;
+  margin-left : 0rem;
+  margin-right: 30px;
   align-items:center;
   right:0;
   justify-content: between;
 `;
 
 
-const Header = ({history}) => {
+const Header = () => {
 
   return(
 
      <Wrapper>
-       <Title onClick={()=>{history.push("/")}}>Law-Farm</Title>
-       <Button onClick={()=>{history.push("/RegisterPage")}}>회원가입</Button>
-       <Button onClick={()=>{history.push("/Login")}}>로그인</Button>
+         <Title>
+          <Link to ="/" style={{color:'white'}}>Law-Farm</Link> 
+         </Title>
+       <Link to ="/RegisterPage">
+         <Button>회원가입</Button>
+       </Link>
+       <Link to ="/Login">
+         <Button>로그인</Button>
+       </Link>
      </Wrapper>
 
 
