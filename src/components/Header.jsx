@@ -34,7 +34,9 @@ const Title = styled.h1`
 
 const Button = styled.button`
   border-radius:0.5rem;
+  margin-bottom: 10px;
   font-size : 1rem;
+  font-family : Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: Black;
   background-color:#f1f1f1;
   min-width: 130px;
