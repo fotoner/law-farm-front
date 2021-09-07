@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React from 'react';
 import colors from "../lib/colors";
 import { Route, Switch, useLocation,Link,withRouter, Router } from "react-router-dom";
+import Navbar from "../components/Navbar";
 const Wrapper = styled.section`
     /* 레이아웃 */
     display: flex;
@@ -54,7 +55,7 @@ const Header = () => {
 
      <Wrapper>
          <Title>
-          <Link to ="/" style={{color:'white'}}>Law-Farm</Link> 
+          <Navbar/>
          </Title>
        <Link to ="/RegisterPage">
          <Button>회원가입</Button>

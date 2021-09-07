@@ -3,9 +3,6 @@ import SearchInput from "../components/SearchInput";
 import colors from "../lib/colors";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Login from "./Login";
-import RegisterPage from"./RegisterPage";
-
 const Content = styled.div`
   display: flex;
   flex-direction: column;
