@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from "react";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+
 import styled from "styled-components";
 import queryString from "query-string";
-import axios from "axios";
+// import axios from "axios";
 import colors from "../lib/colors";
-import {useLocation} from "react-router-dom";
+import { searchResult } from "../lib/api";
 
 const Result = styled.div`
   margin-top: 48px;
@@ -71,14 +72,7 @@ const SearchResult = () => {
 
   useEffect(() => {
     if (query) {
-      axios
-        .get('/ml/search', {
-          params: {
-            query: query,
-            target: "article",
-            size: 25
-          }
-        })
+      searchResult(query)
         .then((res) => {
           console.log(res.data)
           setDocument(res.data)

@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom"
+
 import styled from "styled-components";
 
-import {useParams} from "react-router-dom"
-import axios from "axios";
+import { loadDetail } from "../lib/api";
 import colors from "../lib/colors";
 
 import RelateArticle from "../components/RelateArticle";
 
 const Title = styled.div`
-
   font-size: 48px;
   color: ${colors.highlightColor};
 `
@@ -44,12 +44,7 @@ const ArticleDetail = () => {
 
   useEffect(() => {
     if (key) {
-      axios
-        .get('/law/article', {
-          params: {
-            key: key,
-          }
-        })
+      loadDetail(key)
         .then((res) => {
           console.log(res.data)
           setDocument(res.data)
