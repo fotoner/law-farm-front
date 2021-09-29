@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
-import axios from "axios";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
+
+import { documentRelateObject } from "../lib/api";
 import colors from "../lib/colors";
 
 const Title = styled.div`
@@ -58,13 +59,7 @@ const RelateArticle = ({docKey, size=5, target="article"}) => {
 
   useEffect(() => {
     if (docKey) {
-      axios
-        .get(`/ml/${target}`, {
-          params: {
-            key: docKey,
-            size: size
-          }
-        })
+      documentRelateObject(docKey, target, size)
         .then((res) => {
           console.log("related", res.data)
           setDocument(res.data)
