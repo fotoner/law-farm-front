@@ -18,7 +18,7 @@ const Title = styled.div`
 `
 
 const ResultContainer = styled.div`
-  margin-top: 54px;
+  margin-top: 72px;
   display: flex;
   width: 100%;
   flex-direction: column;
