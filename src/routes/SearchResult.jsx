@@ -8,7 +8,7 @@ import colors from "../lib/colors";
 import { searchResult } from "../lib/api";
 
 const Result = styled.div`
-  margin-top: 48px;
+  margin-top: 72px;
   width: 100%;
   max-width: 700px;
 `
@@ -18,7 +18,7 @@ const Title = styled.div`
 `
 
 const ResultContainer = styled.div`
-  margin-top: 54px;
+  margin-top: 48px;
   display: flex;
   width: 100%;
   flex-direction: column;

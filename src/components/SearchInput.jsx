@@ -26,7 +26,7 @@ const SearchInput = () => {
 
   const handleQuery = useCallback((e) => {
     setQuery(e.target.value)
-  }, [query])
+  }, [])
 
   const handleEnter = (e)=> {
     if(e.key === "Enter")
