@@ -1,58 +1,65 @@
-import React from "react";
+import { useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import InputText from "../components/InputText";
+import Button from "../components/Button";
+import FormBox from "../components/FormBox";
 import colors from "../lib/colors";
 
-const Inner = styled.article`
-  width: 100vw;
-  min-height: 100vh;
-  background-color: ${colors.background};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  & > .header-gap {
-    height: 64px;
-    width: 100%;
-    background-color: #fff;
-  }
-  & > .inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    flex: 1;
-  }
+const DivisionLine = styled.hr`
+  margin: 16px 0;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid ${colors.hrWhite};
 `;
 
-const LoginBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-  width: 40rem;
-  background-color: #fff;
-  box-sizing: border-box;
-  box-shadow: 10px 10px 20px 1px rgb(0 0 0 / 5%);
-  border-radius: 1rem;
-
-  .head {
-    font-weight: bold;
-    font-size: 32px;
-    color: ${colors.fontDarkGrey};
+const SighupLink = styled.div`
+  color: ${colors.fontGrey}; 
+  a {
+    color: ${colors.highlightColor};
+    :hover{
+      text-decoration:underline;
+    }
   }
 `;
 
 const Login = () => {
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleForm = useCallback(
+    (e, target) => {
+      setLoginForm({ ...loginForm, [target]: e.target.value });
+    },
+    [loginForm]
+  );
+
   return (
-    <Inner className="login">
-      <div className="header-gap" />
-      <div className="inner">
-        <LoginBox>
-          <div className="head">로그인</div>
-        </LoginBox>
-      </div>
-    </Inner>
+    <FormBox>
+      <label className="head">로그인</label>
+      <InputText
+        inputTitle="이메일"
+        type="email"
+        handler={handleForm}
+        target="email"
+        required
+      />
+      <InputText
+        inputTitle="비밀번호"
+        type="password"
+        handler={handleForm}
+        target="password"
+        required
+      />
+      <Button>로그인</Button>
+      <DivisionLine />
+      <SighupLink>
+        로우팜이 처음이신가요? <Link to="/signup">회원가입</Link>
+      </SighupLink>
+    </FormBox>
   );
 };
 
