@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import colors from "../lib/colors";
-import useScroll from "../use/useScroll";
+import useScroll from "../hooks/useScroll";
 
 const Navbar = styled.nav`
   display: flex;

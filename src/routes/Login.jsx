@@ -6,6 +6,7 @@ import InputText from "../components/InputText";
 import Button from "../components/Button";
 import FormBox from "../components/FormBox";
 import colors from "../lib/colors";
+import { getLoginToken } from "../lib/api";
 
 const DivisionLine = styled.hr`
   margin: 16px 0;
@@ -37,8 +38,23 @@ const Login = () => {
     [loginForm]
   );
 
+  const handleLogin = useCallback((e)=>{
+    e.preventDefault();
+
+    getLoginToken(loginForm.email, loginForm.password)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+        console.log(err.response);
+      }) 
+    
+    // console.log(e);
+  },[loginForm])
+
   return (
-    <FormBox>
+    <FormBox onSubmit={handleLogin}>
       <label className="head">로그인</label>
       <InputText
         inputTitle="이메일"

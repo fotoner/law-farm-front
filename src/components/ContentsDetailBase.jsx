@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import colors from "../lib/colors";
 
-import useContentsDetail from "../use/useContentsDetail";
+import useContentsDetail from "../hooks/useContentsDetail";
 
 import RelateContents from "./RelateContents";
 
