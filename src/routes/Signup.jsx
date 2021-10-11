@@ -7,6 +7,7 @@ import FormBox from "../components/FormBox";
 const Signup = () => {
   const [signupForm, setSignupForm] = useState({
     email: "",
+    username: "",
     password: "",
     password_re: ""
   });
@@ -20,12 +21,19 @@ const Signup = () => {
 
   return (
     <FormBox>
-      <label className="head">회원가입</label>
+      <label className="head">회원정보 입력</label>
       <InputText
         inputTitle="이메일"
         type="email"
         handler={handleForm}
         target="email"
+        required
+      />
+      <InputText
+        inputTitle="닉네임"
+        type="text"
+        handler={handleForm}
+        target="username"
         required
       />
       <InputText

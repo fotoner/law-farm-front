@@ -46,12 +46,12 @@ const FormMain = styled.form`
   }
 `;
 
-const FormBox = ({children}) => {
+const FormBox = ({children, onSubmit}) => {
   return (
     <FormStyle className="login">
       <div className="header-gap" />
       <div className="inner">
-        <FormMain>
+        <FormMain onSubmit={onSubmit}>
           {children}
         </FormMain>
       </div>
