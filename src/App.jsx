@@ -10,7 +10,7 @@ import ArticleDetail from "./routes/ArticleDetail";
 import SearchResult from "./routes/SearchResult";
 import Login from "./routes/Login";
 import Signup from "./routes/Signup";
-
+import BoardPage from "./routes/BoardPage";
 const Main = styled.div`
   display: flex;
   flex-direction: column;
@@ -40,6 +40,7 @@ const App = () => {
       <Header/>
       <Switch >
         <Route path="/" component={Home} exact/>
+        <Route path="/BoardPage" component={BoardPage} exact/>
         <Route path="/login" component={Login} exact/>
         <Route path="/signup" component={Signup} exact/>
         <Route path="/result" component={SearchResult} exact/>

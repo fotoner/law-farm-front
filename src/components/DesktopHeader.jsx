@@ -47,6 +47,11 @@ const Navbar = styled.nav`
       .login{
         color: ${colors.fontGrey}
       }
+      .BoardPage{
+        margin-right : 20px;
+        color: ${colors.fontGrey}
+      }
+      
     }
   }
 `;
@@ -62,6 +67,9 @@ const DesktopHeader = () => {
         </div>
         <div className="center"></div>
         <div className="right">
+          <Link to="/BoardPage" className ="BoardPage">
+            Q&A
+          </Link>
           <Link to="/login" className="login">
             로그인
           </Link>
