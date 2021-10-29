@@ -45,10 +45,21 @@ const getLoginToken = (email, password) => {
   );
 };
 
+const testLoginToken = (jwt) => {
+  return baseAxios.post(`/login/test-token`, {}, {
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  });
+};
 
-const postSignup = (email, username, password) => {
+const postSignup = (email, username, password) => {};
 
-}
-
-
-export { searchResult, loadDetail, documentRelateObject, getLoginToken, postSignup };
+export {
+  searchResult,
+  loadDetail,
+  documentRelateObject,
+  getLoginToken,
+  testLoginToken,
+  postSignup,
+};
