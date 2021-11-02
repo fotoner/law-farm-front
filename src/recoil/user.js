@@ -9,6 +9,7 @@ const JWT_CODE = {
   NONE: "JWT_NONE",
   OK: "JWT_OK",
   EXPIRED: "JWT_EXPIRED",
+  FAIL: "JWT_FAIL",
 }
 
 const jwtState = atom({

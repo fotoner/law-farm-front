@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { loadDetail } from "../lib/api";
+import useDocumentApi from "./useDocumentApi";
 
 const useContentsDetail = ({contentsType, contentsKey}) => {
   const [contents, setContents] = useState(null)
+  const {loadDetail} = useDocumentApi();
 
   useEffect(() => {
       if (contentsKey) {

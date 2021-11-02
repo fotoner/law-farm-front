@@ -5,6 +5,7 @@ import { jwtState, userState, JWT_CODE } from "../recoil/user";
 
 import { getLoginToken, testLoginToken } from "../lib/api";
 
+
 const USER_JWT = "userJwt";
 
 const useUserRecoil = () => {
@@ -32,24 +33,31 @@ const useUserRecoil = () => {
       });
   }, []);
 
-  const setLogin = useCallback((email, password) => {
-    getLoginToken(email, password)
-      .then((res) => {
-        const resultJwt = res.data;
-        localStorage.setItem(USER_JWT, JSON.stringify(resultJwt));
-        loadUser(resultJwt);
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log(err.response);
-      });
-  }, []);
+  const setLogin = useCallback(
+    (email, password) => {
+      getLoginToken(email, password)
+        .then((res) => {
+          const resultJwt = res.data;
+          localStorage.setItem(USER_JWT, JSON.stringify(resultJwt));
+          loadUser(resultJwt);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log(err.response);
+          setJwt({
+            ...jwt,
+            status: JWT_CODE.FAIL,
+          });
+        });
+    },
+    [jwt]
+  );
 
   const initUserState = useCallback(() => {
     const resultJwt = JSON.parse(localStorage.getItem(USER_JWT));
 
     if (resultJwt) {
-      loadUser(resultJwt)
+      loadUser(resultJwt);
     }
   }, []);
 

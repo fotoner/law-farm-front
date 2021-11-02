@@ -1,28 +1,27 @@
-import React, {useState, useEffect} from "react";
-import {Link, useLocation} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import styled from "styled-components";
 import queryString from "query-string";
-// import axios from "axios";
 import colors from "../lib/colors";
-import { searchResult } from "../lib/api";
+import useDocumentApi from "../hooks/useDocumentApi";
 
 const Result = styled.div`
   margin-top: 72px;
   width: 100%;
   max-width: 700px;
-`
+`;
 const Title = styled.div`
   font-size: 48px;
   color: ${colors.highlightColor};
-`
+`;
 
 const ResultContainer = styled.div`
   margin-top: 48px;
   display: flex;
   width: 100%;
   flex-direction: column;
-`
+`;
 
 const ResultItem = styled.div`
   cursor: pointer;
@@ -38,18 +37,18 @@ const ResultItem = styled.div`
 
   .title {
     color: ${colors.highlightColor};
-    
+
     font-size: 24px;
   }
 
   .content {
     display: flex;
-    .paragraphCount{
+    .paragraphCount {
       margin-left: 8px;
       color: ${colors.fontGrey};
     }
   }
-`
+`;
 
 const DetailLink = styled.div`
   position: absolute;
@@ -58,12 +57,13 @@ const DetailLink = styled.div`
   font-size: 24px;
   transform: translateY(-50%);
   color: ${colors.highlightColor};
-`
+`;
 
 const SearchResult = () => {
   const location = useLocation();
   const [query, setQuery] = useState(null);
   const [document, setDocument] = useState(null);
+  const { searchDocument } = useDocumentApi();
 
   useEffect(() => {
     const parse = queryString.parse(location.search);
@@ -72,47 +72,41 @@ const SearchResult = () => {
 
   useEffect(() => {
     if (query) {
-      searchResult(query)
-        .then((res) => {
-          console.log(res.data)
-          setDocument(res.data)
-        })
+      searchDocument(query).then((res) => {
+        console.log(res.data);
+        setDocument(res.data);
+      });
     }
-  }, [query])
+  }, [query]);
 
   return (
     <Result>
       <Title>'{query}' 검색결과</Title>
       <ResultContainer>
-        {
-          document &&
-          document.result.map((val, idx) =>
+        {document &&
+          document.result.map((val, idx) => (
             <ResultItem key={idx}>
               <Link to={`/article/@${val.name}`}>
-                <div className="title">
-                  {val.name}
-                </div>
+                <div className="title">{val.name}</div>
                 <div className="content">
                   <div className="type">
-                    {
-                      val.about.text.length > 0?
-                        val.about.text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]:
-                        val.about.text
-                    }
+                    {val.about.text.length > 0
+                      ? val.about.text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]
+                      : val.about.text}
                   </div>
                   <div className="paragraphCount">
-                    {
-                      val.about.paragraphs.length > 0 ? `*${val.about.paragraphs.length}개의 보조항 존재*` : ''
-                    }
+                    {val.about.paragraphs.length > 0
+                      ? `*${val.about.paragraphs.length}개의 보조항 존재*`
+                      : ""}
                   </div>
                 </div>
                 <DetailLink>〈</DetailLink>
               </Link>
             </ResultItem>
-          )}
+          ))}
       </ResultContainer>
     </Result>
-  )
-}
+  );
+};
 
 export default SearchResult;
