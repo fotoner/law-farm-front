@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import App from './App'
+
+import { RecoilRoot } from "recoil";
+import App from "./App";
 
 const Root = () => {
-    return (
+  return (
     <BrowserRouter>
-        <App/>
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
     </BrowserRouter>
-    )
-}
+  );
+};
 
-export default Root
+export default Root;

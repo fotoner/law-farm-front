@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { documentRelateObject } from "../lib/api";
+import useDocumentApi from "../hooks/useDocumentApi";
 import colors from "../lib/colors";
 
 const Title = styled.div`
@@ -56,10 +56,11 @@ const DetailLink = styled.div`
 
 const RelateContents = ({ docKey, size = 5, target = "article" }) => {
   const [document, setDocument] = useState(null);
+  const { relatedDocument } = useDocumentApi();
 
   useEffect(() => {
     if (docKey) {
-      documentRelateObject(docKey, target, size).then((res) => {
+      relatedDocument(docKey, target, size).then((res) => {
         console.log("related", res.data);
         setDocument(res.data);
       });

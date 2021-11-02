@@ -1,12 +1,14 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import InputText from "../components/InputText";
 import Button from "../components/Button";
 import FormBox from "../components/FormBox";
+
 import colors from "../lib/colors";
-import { getLoginToken } from "../lib/api";
+
+import useUserRecoil from "../hooks/useUserRecoil";
 
 const DivisionLine = styled.hr`
   margin: 16px 0;
@@ -16,20 +18,27 @@ const DivisionLine = styled.hr`
 `;
 
 const SighupLink = styled.div`
-  color: ${colors.fontGrey}; 
+  color: ${colors.fontGrey};
   a {
     color: ${colors.highlightColor};
-    :hover{
-      text-decoration:underline;
+    :hover {
+      text-decoration: underline;
     }
   }
 `;
 
-const Login = () => {
+const Login = ({ history }) => {
+  const { user, setLogin } = useUserRecoil();
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (user){
+      history.replace("/")
+    }
+  }, [user, history]);
 
   const handleForm = useCallback(
     (e, target) => {
@@ -38,20 +47,13 @@ const Login = () => {
     [loginForm]
   );
 
-  const handleLogin = useCallback((e)=>{
-    e.preventDefault();
-
-    getLoginToken(loginForm.email, loginForm.password)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-        console.log(err.response);
-      }) 
-    
-    // console.log(e);
-  },[loginForm])
+  const handleLogin = useCallback(
+    (e) => {
+      e.preventDefault();
+      setLogin(loginForm.email, loginForm.password);
+    },
+    [loginForm, setLogin]
+  );
 
   return (
     <FormBox onSubmit={handleLogin}>

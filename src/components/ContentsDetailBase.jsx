@@ -65,7 +65,7 @@ const ContentsDetailBaes = ({ contentsType }) => {
           ))}
       </ContentsBody>
 
-      <RelateContents docKey={key} target={contentsType} />
+      {contents && <RelateContents docKey={key} target={contentsType} />}
     </>
   );
 };
