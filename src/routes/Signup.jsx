@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import Helmet from "react-helmet";
 
 import InputText from "../components/InputText";
 import Button from "../components/Button";
@@ -9,7 +10,7 @@ const Signup = () => {
     email: "",
     username: "",
     password: "",
-    password_re: ""
+    password_re: "",
   });
 
   const handleForm = useCallback(
@@ -21,6 +22,11 @@ const Signup = () => {
 
   return (
     <FormBox>
+      <Helmet>
+        <title>
+          회원가입 - 로우팜
+        </title>
+      </Helmet>
       <label className="head">회원정보 입력</label>
       <InputText
         inputTitle="이메일"

@@ -3,14 +3,43 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
-#root {
+.route-transition-group{
+  width: 100%;
 }
+
+.pageSlider {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.pageSlider-enter {
+  opacity: 0;
+}
+
+
+.pageSlider-enter-active {
+  opacity: 1;
+  transition: opacity 300ms, transform 300ms;
+}
+
+.pageSlider-exit {
+  opacity: 1;
+}
+
+.pageSlider-exit-active {
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+}
+/* #root {
+} */

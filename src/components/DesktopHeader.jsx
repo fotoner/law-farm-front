@@ -1,21 +1,28 @@
+import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 import colors from "../lib/colors";
+
 import useScroll from "../hooks/useScroll";
 import useUserRecoil from "../hooks/useUserRecoil";
+
+import UserMenu from "./UserMenu";
 
 const Navbar = styled.nav`
   display: flex;
   position: fixed;
-  z-index: 9999;
+  z-index: 999;
   width: 100%;
   height: 64px;
   min-height: 64px;
   box-sizing: border-box;
-  transition: background 0.3s, border-bottom 0.3s;
+  transition: background 0.3s, border-bottom 0.3s, box-shadow 0.3s;
+  user-select: none;
 
   &.scrolled {
-    border-bottom: solid 1px ${colors.background};
+    box-shadow: 0 1px 0 rgba(0,0,0, 0.1);
+
     background-color: #fff;
   }
 
@@ -30,12 +37,9 @@ const Navbar = styled.nav`
     align-items: center;
 
     .left {
-      /* margin-top:18px; */
       cursor: pointer;
       display: flex;
       line-height: 1;
-      /* align-items: center;
-      justify-content: center; */
       font-size: 24px;
       font-weight: bold;
       a {
@@ -45,7 +49,15 @@ const Navbar = styled.nav`
     .center {
     }
     .right {
-      .login {
+      .mypage {
+        position: relative;
+        color: ${colors.highlightColor};
+        cursor: pointer;
+        font-weight: bold;
+
+      }
+      .login,
+      .logout {
         color: ${colors.fontGrey};
       }
     }
@@ -53,8 +65,18 @@ const Navbar = styled.nav`
 `;
 
 const DesktopHeader = () => {
+  const [toggle, setToggle] = useState(false);
   const [scrolled] = useScroll();
   const { user } = useUserRecoil();
+
+  const handleToggle = useCallback(() => {
+    setToggle(!toggle);
+  }, [toggle]);
+
+  const handlerToggleFalse = useCallback(() => {
+    setToggle(false);
+  }, []);
+
   return (
     <Navbar className={"navbar " + (scrolled ? "scrolled" : "")}>
       <div className="inner">
@@ -68,9 +90,14 @@ const DesktopHeader = () => {
               로그인
             </Link>
           ) : (
-            <Link to="/logout" className="login">
-              로그아웃
-            </Link>
+            <div>
+              <div className="mypage" onClick={handleToggle}>
+                {user.username}
+                {toggle && (
+                  <UserMenu toggle={toggle} handler={handlerToggleFalse} />
+                )}
+              </div>
+            </div>
           )}
         </div>
       </div>

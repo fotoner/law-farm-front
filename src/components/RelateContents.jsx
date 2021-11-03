@@ -59,11 +59,13 @@ const RelateContents = ({ docKey, size = 5, target = "article" }) => {
   const { relatedDocument } = useDocumentApi();
 
   useEffect(() => {
+    const requestRelated = async () => {
+      const res = await relatedDocument(docKey, target, size)
+      setDocument(res);
+    }
+
     if (docKey) {
-      relatedDocument(docKey, target, size).then((res) => {
-        console.log("related", res.data);
-        setDocument(res.data);
-      });
+      requestRelated();
     }
   }, [docKey, target, size]);
 

@@ -6,6 +6,7 @@ const colors = {
   highlightColor: "#7e6ca8",
   lightColor: "#a490d1",
   hrWhite: "#eee",
+  like: "#f91880",
 }
 
 export default colors;
