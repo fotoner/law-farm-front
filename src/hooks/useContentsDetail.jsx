@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useDocumentApi from "./useDocumentApi";
+import useDocumentApi from "./api/useDocumentApi";
 
 const useContentsDetail = ({ contentsType, contentsKey }) => {
   const [contents, setContents] = useState(null);

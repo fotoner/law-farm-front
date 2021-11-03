@@ -5,7 +5,7 @@ import Helmet from "react-helmet";
 import styled from "styled-components";
 import queryString from "query-string";
 import colors from "../lib/colors";
-import useDocumentApi from "../hooks/useDocumentApi";
+import useDocumentApi from "../hooks/api/useDocumentApi";
 
 const Result = styled.div`
   margin-top: 72px;
@@ -85,7 +85,7 @@ const SearchResult = () => {
   return (
     <Result>
       <Title>'{query}' 검색결과</Title>
-      <Helmet title={`'${query}' 검색결과 - 로우팜`}/>
+      <Helmet title={`'${query}' 검색결과 - 로우팜`} />
       <ResultContainer>
         {document &&
           document.result.map((val, idx) => (
