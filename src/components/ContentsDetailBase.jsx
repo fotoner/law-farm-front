@@ -16,7 +16,7 @@ import useBookmarkApi from "../hooks/api/useBookmarkApi";
 const Article = styled.div`
   max-width: 1024px;
   width: 100%;
-`
+`;
 
 const ArticleHeader = styled.div`
   display: flex;
@@ -102,7 +102,7 @@ const ContentsDetailBaes = ({ contentsType }) => {
     const getBookmarkInfo = async () => {
       const res = await getBookmark(key, contentsType);
 
-      setIsBookmark(res ? true : false);
+      setIsBookmark(!!res);
     };
 
     if (user) {

@@ -10,8 +10,7 @@ const MenuUl = styled.ul`
   background-color: #fff;
   position: absolute;
   padding: 2px 0;
-  margin: 0;
-  margin-top: 8px;
+  margin: 8px 0 0;
   right: 0;
 
   border: solid 1px ${colors.hrWhite};
@@ -19,6 +18,7 @@ const MenuUl = styled.ul`
   width: 192px;
   box-sizing: border-box;
   box-shadow: 10px 10px 20px 1px rgb(0 0 0 / 20%);
+
   li {
     cursor: pointer;
     font-weight: normal;
@@ -29,6 +29,7 @@ const MenuUl = styled.ul`
     &:hover {
       background-color: ${colors.hrWhite};
     }
+
     a {
       display: flex;
       width: 100%;
