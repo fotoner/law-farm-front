@@ -65,9 +65,11 @@ const App = () => {
       <TransitionGroup className="route-transition-group">
         <Switch>
           {routeList.map(({ path, name, Component }) => (
-            <Route Route key={name} exact path={path}>
+            <Route key={name} exact path={path}>
               {({ match }) => (
-                <TransitionWrapper match={match} children={<Component />} />
+                <TransitionWrapper match={match}>
+                  <Component />
+                </TransitionWrapper>
               )}
             </Route>
           ))}

@@ -17,11 +17,12 @@ const Navbar = styled.nav`
   height: 64px;
   min-height: 64px;
   box-sizing: border-box;
-  transition: background 0.3s, border-bottom 0.3s;
+  transition: background 0.3s, border-bottom 0.3s, box-shadow 0.3s;
   user-select: none;
 
   &.scrolled {
-    border-bottom: solid 1px ${colors.background};
+    box-shadow: 0 1px 0 rgba(0,0,0, 0.1);
+
     background-color: #fff;
   }
 
