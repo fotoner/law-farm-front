@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Helmet from "react-helmet";
 
 import styled from "styled-components";
 import queryString from "query-string";
@@ -71,17 +72,20 @@ const SearchResult = () => {
   }, [location]);
 
   useEffect(() => {
+    const requestSearch = async () => {
+      const res = await searchDocument(query);
+      setDocument(res);
+    };
+
     if (query) {
-      searchDocument(query).then((res) => {
-        console.log(res.data);
-        setDocument(res.data);
-      });
+      requestSearch();
     }
   }, [query]);
 
   return (
     <Result>
       <Title>'{query}' 검색결과</Title>
+      <Helmet title={`'${query}' 검색결과 - 로우팜`}/>
       <ResultContainer>
         {document &&
           document.result.map((val, idx) => (

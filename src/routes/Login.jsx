@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import Helmet from "react-helmet";
 import styled from "styled-components";
 
 import InputText from "../components/InputText";
@@ -58,6 +59,9 @@ const Login = () => {
 
   return (
     <FormBox onSubmit={handleLogin}>
+      <Helmet>
+        <title>로그인 - 로우팜</title>
+      </Helmet>
       <label className="head">로그인</label>
       <InputText
         inputTitle="이메일"
