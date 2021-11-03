@@ -12,5 +12,34 @@ a {
     color: black;
 }
 
-#root {
+.route-transition-group {
+  position: relative;
 }
+
+.pageSlider-enter {
+
+  opacity: 0;
+}
+
+.pageSlider-enter-done {
+
+}
+
+.pageSlider-enter-active {
+
+  opacity: 1;
+  transition: opacity 300ms, transform 300ms;
+}
+
+.pageSlider-exit {
+
+  opacity: 1;
+}
+
+.pageSlider-exit-active {
+
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+}
+/* #root {
+} */

@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import InputText from "../components/InputText";
@@ -27,12 +27,13 @@ const SighupLink = styled.div`
   }
 `;
 
-const Login = ({ history }) => {
+const Login = () => {
   const { user, setLogin } = useUserRecoil();
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
+  const history = useHistory();
 
   useEffect(() => {
     if (user){

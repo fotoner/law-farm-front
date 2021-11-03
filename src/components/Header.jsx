@@ -20,16 +20,7 @@ const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-    
-  // }, [location, themeList, hideList]);
-
-  return width > 1024 ? (
-    <DesktopHeader />
-  ) : (
-    <DesktopHeader />
-  );
+  return width > 1024 ? <DesktopHeader /> : <DesktopHeader />;
 };
 
 export default Header;

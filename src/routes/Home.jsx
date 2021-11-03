@@ -3,10 +3,12 @@ import SearchInput from "../components/SearchInput";
 import colors from "../lib/colors";
 
 const Content = styled.div`
+  /* left: 0; */
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  /* width: 100%; */
 `
 
 const Title = styled.div`

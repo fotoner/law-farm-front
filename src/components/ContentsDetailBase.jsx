@@ -46,7 +46,7 @@ const ContentsDetailBaes = ({ contentsType }) => {
   });
 
   return (
-    <>
+    <div>
       <ContentsBody>
         <Title>{key}</Title>
         <Text>
@@ -66,7 +66,7 @@ const ContentsDetailBaes = ({ contentsType }) => {
       </ContentsBody>
 
       {contents && <RelateContents docKey={key} target={contentsType} />}
-    </>
+    </div>
   );
 };
 

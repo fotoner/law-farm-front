@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router";
 import useUserRecoil from "../hooks/useUserRecoil";
 
-const Logout = ({ history }) => {
+const Logout = () => {
   const { setLogout } = useUserRecoil();
+  const history = useHistory();
 
   useEffect(() => {
     setLogout();
