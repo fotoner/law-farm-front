@@ -5,7 +5,7 @@ import styled from "styled-components";
 import colors from "../lib/colors";
 
 import useScroll from "../hooks/useScroll";
-import useUserRecoil from "../hooks/useUserRecoil";
+import useUserRecoil from "../hooks/auth/useUserRecoil";
 
 import UserMenu from "./UserMenu";
 

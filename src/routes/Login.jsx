@@ -9,7 +9,7 @@ import FormBox from "../components/FormBox";
 
 import colors from "../lib/colors";
 
-import useUserRecoil from "../hooks/useUserRecoil";
+import useUserRecoil from "../hooks/auth/useUserRecoil";
 
 const DivisionLine = styled.hr`
   margin: 16px 0;
@@ -37,8 +37,8 @@ const Login = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (user){
-      history.replace("/")
+    if (user) {
+      history.replace("/");
     }
   }, [user, history]);
 

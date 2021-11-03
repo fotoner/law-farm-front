@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Helmet from "react-helmet";
-import { useHistory } from "react-router";
-import useUserRecoil from "../hooks/useUserRecoil";
+import { useHistory } from "react-router-dom";
+import useUserRecoil from "../hooks/auth/useUserRecoil";
 
 const Logout = () => {
   const { setLogout } = useUserRecoil();

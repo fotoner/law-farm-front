@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { useRecoilState } from "recoil";
 
-import { jwtState, userState, JWT_CODE } from "../recoil/user";
+import { jwtState, userState, JWT_CODE } from "../../recoil/user";
 
-import { getLoginToken, testLoginToken } from "../lib/api";
+import { getLoginToken, testLoginToken } from "../../lib/api";
 
 
 const USER_JWT = "userJwt";

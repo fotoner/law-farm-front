@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import useDocumentApi from "../hooks/useDocumentApi";
+import useDocumentApi from "../hooks/api/useDocumentApi";
 import colors from "../lib/colors";
 
 const Title = styled.div`

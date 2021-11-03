@@ -1,3 +1,4 @@
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import Helmet from "react-helmet";
 
@@ -6,10 +7,16 @@ import styled from "styled-components";
 import colors from "../lib/colors";
 
 import useContentsDetail from "../hooks/useContentsDetail";
-import useUserRecoil from "../hooks/useUserRecoil";
+import useUserRecoil from "../hooks/auth/useUserRecoil";
 
 import RelateContents from "./RelateContents";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import useBookmarkApi from "../hooks/api/useBookmarkApi";
+
+const Article = styled.div`
+  max-width: 1024px;
+  width: 100%;
+`;
 
 const ArticleHeader = styled.div`
   display: flex;
@@ -37,6 +44,21 @@ const AddLike = styled.div`
   &:hover {
     background-color: ${colors.like}0f;
     color: ${colors.like};
+  }
+`;
+
+const DelteLike = styled.div`
+  padding: 8px;
+  border-radius: 36px;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  font-weight: bold;
+  color: ${colors.like};
+  transition: color 0.3s, background-color 0.3s;
+  &:hover {
+    background-color: ${colors.highlightColor}0f;
+    color: ${colors.highlightColor};
   }
 `;
 
@@ -68,24 +90,60 @@ const Paragraph = styled.div`
 const ContentsDetailBaes = ({ contentsType }) => {
   const { key } = useParams();
   const { user } = useUserRecoil();
+  const { getBookmark, addBookmark, deleteBookmark } = useBookmarkApi();
+  const [isBookmark, setIsBookmark] = useState(false);
+
   const [contents] = useContentsDetail({
     contentsType: contentsType,
     contentsKey: key,
   });
 
+  useEffect(() => {
+    const getBookmarkInfo = async () => {
+      const res = await getBookmark(key, contentsType);
+
+      setIsBookmark(!!res);
+    };
+
+    if (user) {
+      getBookmarkInfo();
+    }
+  }, [user, key, contentsType]);
+
+  const handleLike = useCallback(async () => {
+    if (isBookmark) {
+      const res = await deleteBookmark(key, contentsType);
+
+      if (res) {
+        setIsBookmark(false);
+      }
+    } else {
+      const res = await addBookmark(key, contentsType);
+
+      if (res) {
+        setIsBookmark(true);
+      }
+    }
+  }, [isBookmark]);
+
   return (
-    <div>
+    <Article>
       <Helmet>
         <title>{key} - 로우팜</title>
       </Helmet>
       <ContentsBody>
         <ArticleHeader>
           <Title>{key}</Title>
-          {user && (
-            <AddLike>
-              <AiOutlineHeart size={36} />
-            </AddLike>
-          )}
+          {user &&
+            (isBookmark ? (
+              <DelteLike onClick={handleLike}>
+                <AiFillHeart size={36} />
+              </DelteLike>
+            ) : (
+              <AddLike onClick={handleLike}>
+                <AiOutlineHeart size={36} />
+              </AddLike>
+            ))}
         </ArticleHeader>
         <Text>
           {contents &&
@@ -104,7 +162,7 @@ const ContentsDetailBaes = ({ contentsType }) => {
       </ContentsBody>
 
       {contents && <RelateContents docKey={key} target={contentsType} />}
-    </div>
+    </Article>
   );
 };
 

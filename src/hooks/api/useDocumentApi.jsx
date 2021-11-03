@@ -1,33 +1,8 @@
 import { useCallback } from "react";
-import { useRecoilState } from "recoil";
-
-import baseAxios from "../lib/baseAxios";
-
-import { jwtState, JWT_CODE } from "../recoil/user";
+import useAxios from "./useAxios";
 
 const useDocumentApi = () => {
-  const [jwt] = useRecoilState(jwtState);
-
-  const requestWrapper = async (request) => {
-    try {
-      const res = await request;
-
-      return res;
-    } catch (err) {
-      console.log(err.response);
-      return err.response;
-    }
-  };
-
-  const getAxios = useCallback(() => {
-    const axios = baseAxios;
-    if (jwt.status === JWT_CODE.OK) {
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${jwt.data.access_token}`;
-    }
-    return axios;
-  }, [jwt]);
+  const { requestWrapper, getAxios } = useAxios();
 
   const searchDocument = useCallback(
     async (query, target = "article", size = 25) => {
@@ -85,26 +60,7 @@ const useDocumentApi = () => {
     [getAxios]
   );
 
-  const addBookmark = useCallback(
-    async (key, target = "article") => {
-      const result = await requestWrapper(
-        getAxios().get("/bookmarks/me", {
-          params: {
-            content_key: key,
-            content_type: target,
-          },
-        })
-      );
-      if (result.status !== 200) {
-        return null;
-      }
-
-      return result.data;
-    },
-    [getAxios]
-  );
-
-  return { searchDocument, loadDetail, relatedDocument, addBookmark };
+  return { searchDocument, loadDetail, relatedDocument };
 };
 
 export default useDocumentApi;

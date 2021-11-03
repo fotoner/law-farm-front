@@ -16,8 +16,8 @@ import Signup from "./routes/Signup";
 import MyPage from "./routes/MyPage";
 import Bookmark from "./routes/Bookmark";
 
-import useUserRecoil from "./hooks/useUserRecoil";
-import useJwtExpire from "./hooks/useJwtExpire";
+import useUserRecoil from "./hooks/auth/useUserRecoil";
+import useJwtExpire from "./hooks/auth/useJwtExpire";
 
 const Main = styled.div`
   display: flex;

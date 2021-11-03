@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
-import { jwtState, userState, JWT_CODE } from "../recoil/user";
+import { jwtState, userState, JWT_CODE } from "../../recoil/user";
 
 const USER_JWT = "userJwt";
 
