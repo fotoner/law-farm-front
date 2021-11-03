@@ -8,7 +8,7 @@ const TransitionWrapper = ({ children, match }) => {
     <CSSTransition
       nodeRef={transitionRef}
       in={match != null}
-      timeout={300}
+      timeout={500}
       classNames="pageSlider"
       unmountOnExit
     >

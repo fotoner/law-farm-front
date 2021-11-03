@@ -27,7 +27,7 @@ const Main = styled.div`
   margin: 0 auto;
   min-height: 100vh;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1064px) {
     width: 100%;
     padding: 0 20px;
     box-sizing: border-box;

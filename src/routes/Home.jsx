@@ -4,7 +4,8 @@ import colors from "../lib/colors";
 
 const Content = styled.div`
   /* left: 0; */
-
+  max-width: 700px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +25,7 @@ const SubTitle = styled.div`
 `
 
 const Input =  styled.div`
-  width: 600px;
+  width: 100%;
   margin-top: 54px;
 `
 

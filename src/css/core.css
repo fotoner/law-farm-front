@@ -12,6 +12,17 @@ a {
   color: black;
 }
 
+.route-transition-group{
+  width: 100%;
+}
+
+.pageSlider {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
 .pageSlider-enter {
   opacity: 0;
 }
