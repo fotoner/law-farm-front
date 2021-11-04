@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import colors from '../lib/colors';
+import colors from "../../lib/colors";
 
 const InputStyle = styled.div`
   display: flex;
@@ -8,14 +8,13 @@ const InputStyle = styled.div`
   width: 100%;
 
   .inputTitle {
-    font-weight:bold;
-    color: ${colors.fontDarkGrey}
+    font-weight: bold;
+    color: ${colors.fontDarkGrey};
   }
 
   .subinfo {
-
   }
-  
+
   input {
     box-sizing: border-box;
     padding: 0.5rem;
@@ -24,22 +23,29 @@ const InputStyle = styled.div`
   }
 `;
 
-const InputText = ({ placeholder, inputTitle, subinfo, handler, defaultValue, target, type="text", required}) => {
+const InputText = ({
+  placeholder,
+  inputTitle,
+  subinfo,
+  handler,
+  defaultValue,
+  target,
+  type = "text",
+  required,
+}) => {
   return (
     <InputStyle className="inputBox">
       <label className="inputTitle">{inputTitle}</label>
-      {subinfo && 
-        <lebel className="subinfo">* {subinfo}</lebel>
-      }
+      {subinfo && <lebel className="subinfo">* {subinfo}</lebel>}
       <input
-        required={required? true: false}
+        required={required ? true : false}
         type={type}
         placeholder={placeholder}
         onChange={(e) => handler(e, target)}
-        defaultValue={defaultValue? defaultValue: ""}
+        defaultValue={defaultValue ? defaultValue : ""}
       />
     </InputStyle>
-  )
-}
+  );
+};
 
-export default InputText
+export default InputText;

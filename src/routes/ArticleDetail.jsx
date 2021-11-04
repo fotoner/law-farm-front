@@ -1,6 +1,6 @@
-import ContentsDetailBaes from "../components/ContentsDetailBase";
+import ContentsDetailBass from "../components/ContentsDetailBass";
 
 const ArticleDetail = () => {
-  return <ContentsDetailBaes contentsType="article" />;
+  return <ContentsDetailBass contentsType="article" />;
 };
 export default ArticleDetail;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import colors from "../lib/colors";
+import colors from "../../lib/colors";
 
 const FormStyle = styled.article`
   width: 100vw;
@@ -35,28 +35,26 @@ const FormMain = styled.form`
   box-sizing: border-box;
   box-shadow: 10px 10px 20px 1px rgb(0 0 0 / 5%);
   border-radius: 0.5rem;
-  
+
   .head {
     font-weight: bold;
     font-size: 32px;
     color: ${colors.fontDarkGrey};
   }
   .inputBox {
-    margin-bottom:16px;
+    margin-bottom: 16px;
   }
 `;
 
-const FormBox = ({children, onSubmit}) => {
+const FormBox = ({ children, onSubmit }) => {
   return (
     <FormStyle className="login">
       <div className="header-gap" />
       <div className="inner">
-        <FormMain onSubmit={onSubmit}>
-          {children}
-        </FormMain>
+        <FormMain onSubmit={onSubmit}>{children}</FormMain>
       </div>
     </FormStyle>
-  )
-}
+  );
+};
 
-export default FormBox
+export default FormBox;

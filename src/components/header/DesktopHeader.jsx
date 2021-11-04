@@ -2,12 +2,12 @@ import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import colors from "../lib/colors";
+import colors from "../../lib/colors";
 
-import useScroll from "../hooks/useScroll";
-import useUserRecoil from "../hooks/auth/useUserRecoil";
+import useScroll from "../../hooks/useScroll";
+import useUserRecoil from "../../hooks/auth/useUserRecoil";
 
-import UserMenu from "./UserMenu";
+import UserMenu from "../input/UserMenu";
 
 const Navbar = styled.nav`
   display: flex;
@@ -21,7 +21,7 @@ const Navbar = styled.nav`
   user-select: none;
 
   &.scrolled {
-    box-shadow: 0 1px 0 rgba(0,0,0, 0.1);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 
     background-color: #fff;
   }
@@ -54,7 +54,6 @@ const Navbar = styled.nav`
         color: ${colors.highlightColor};
         cursor: pointer;
         font-weight: bold;
-
       }
       .login,
       .logout {

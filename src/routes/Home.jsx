@@ -1,7 +1,7 @@
 import Helmet from "react-helmet";
 import styled from "styled-components";
 
-import SearchInput from "../components/SearchInput";
+import SearchInput from "../components/input/SearchInput";
 import colors from "../lib/colors";
 
 const Content = styled.div`

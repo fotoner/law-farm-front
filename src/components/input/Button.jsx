@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import colors from "../lib/colors";
+import colors from "../../lib/colors";
 
 const ButtonStyle = styled.button`
   width: 100%;
@@ -12,12 +12,12 @@ const ButtonStyle = styled.button`
   border: 0 solid;
 
   transition: background 0.3s ease;
-  
-  :focus{
-    background-color:${colors.lightColor}
+
+  :focus {
+    background-color: ${colors.lightColor};
   }
-  :hover{
-    background-color:${colors.lightColor}
+  :hover {
+    background-color: ${colors.lightColor};
   }
 `;
 

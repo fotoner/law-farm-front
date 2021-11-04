@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
-import colors from "../lib/colors";
+import colors from "../../lib/colors";
 
 const MenuUl = styled.ul`
   z-index: 9999;
