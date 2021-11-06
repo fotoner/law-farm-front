@@ -4,7 +4,7 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { TransitionGroup } from "react-transition-group";
 
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import TransitionWrapper from "./components/TransitionWrapper";
 
 import Home from "./routes/Home";
@@ -15,6 +15,7 @@ import Logout from "./routes/Logout";
 import Signup from "./routes/Signup";
 import MyPage from "./routes/MyPage";
 import Bookmark from "./routes/Bookmark";
+import NotFound from "./routes/NotFound";
 
 import useUserRecoil from "./hooks/auth/useUserRecoil";
 import useJwtExpire from "./hooks/auth/useJwtExpire";
@@ -73,6 +74,13 @@ const App = () => {
               )}
             </Route>
           ))}
+          <Route>
+            {({ match }) => (
+              <TransitionWrapper match={match}>
+                <NotFound />
+              </TransitionWrapper>
+            )}
+          </Route>
         </Switch>
       </TransitionGroup>
     </Main>

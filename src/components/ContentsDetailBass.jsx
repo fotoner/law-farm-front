@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Helmet from "react-helmet";
 
@@ -8,10 +8,10 @@ import colors from "../lib/colors";
 
 import useContentsDetail from "../hooks/useContentsDetail";
 import useUserRecoil from "../hooks/auth/useUserRecoil";
+import useBookmarkApi from "../hooks/api/useBookmarkApi";
 
 import RelateContents from "./RelateContents";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import useBookmarkApi from "../hooks/api/useBookmarkApi";
+import LikeButton from "./input/LikeButton";
 
 const Article = styled.div`
   max-width: 1024px;
@@ -30,36 +30,6 @@ const Title = styled.h1`
   font-weight: normal;
   margin: 0;
   color: ${colors.highlightColor};
-`;
-
-const AddLike = styled.div`
-  padding: 8px;
-  border-radius: 36px;
-  cursor: pointer;
-  width: 36px;
-  height: 36px;
-  font-weight: bold;
-  color: ${colors.highlightColor};
-  transition: color 0.3s, background-color 0.3s;
-  &:hover {
-    background-color: ${colors.like}0f;
-    color: ${colors.like};
-  }
-`;
-
-const DelteLike = styled.div`
-  padding: 8px;
-  border-radius: 36px;
-  cursor: pointer;
-  width: 36px;
-  height: 36px;
-  font-weight: bold;
-  color: ${colors.like};
-  transition: color 0.3s, background-color 0.3s;
-  &:hover {
-    background-color: ${colors.highlightColor}0f;
-    color: ${colors.highlightColor};
-  }
 `;
 
 const SubTitle = styled.div`
@@ -87,10 +57,10 @@ const Paragraph = styled.div`
   margin: 40px 0;
 `;
 
-const ContentsDetailBaes = ({ contentsType }) => {
+const ContentsDetailBass = ({ contentsType }) => {
   const { key } = useParams();
   const { user } = useUserRecoil();
-  const { getBookmark, addBookmark, deleteBookmark } = useBookmarkApi();
+  const { getBookmark } = useBookmarkApi();
   const [isBookmark, setIsBookmark] = useState(false);
 
   const [contents] = useContentsDetail({
@@ -110,22 +80,6 @@ const ContentsDetailBaes = ({ contentsType }) => {
     }
   }, [user, key, contentsType]);
 
-  const handleLike = useCallback(async () => {
-    if (isBookmark) {
-      const res = await deleteBookmark(key, contentsType);
-
-      if (res) {
-        setIsBookmark(false);
-      }
-    } else {
-      const res = await addBookmark(key, contentsType);
-
-      if (res) {
-        setIsBookmark(true);
-      }
-    }
-  }, [isBookmark]);
-
   return (
     <Article>
       <Helmet>
@@ -134,16 +88,14 @@ const ContentsDetailBaes = ({ contentsType }) => {
       <ContentsBody>
         <ArticleHeader>
           <Title>{key}</Title>
-          {user &&
-            (isBookmark ? (
-              <DelteLike onClick={handleLike}>
-                <AiFillHeart size={36} />
-              </DelteLike>
-            ) : (
-              <AddLike onClick={handleLike}>
-                <AiOutlineHeart size={36} />
-              </AddLike>
-            ))}
+          {user && (
+            <LikeButton
+              contentsKey={key}
+              contentsType={contentsType}
+              bookmarkState={isBookmark}
+              bookmarkHandler={setIsBookmark}
+            />
+          )}
         </ArticleHeader>
         <Text>
           {contents &&
@@ -166,4 +118,4 @@ const ContentsDetailBaes = ({ contentsType }) => {
   );
 };
 
-export default ContentsDetailBaes;
+export default ContentsDetailBass;

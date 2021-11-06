@@ -3,9 +3,9 @@ import { Link, useHistory } from "react-router-dom";
 import Helmet from "react-helmet";
 import styled from "styled-components";
 
-import InputText from "../components/InputText";
-import Button from "../components/Button";
-import FormBox from "../components/FormBox";
+import InputText from "../components/input/InputText";
+import Button from "../components/input/Button";
+import FormBox from "../components/input/FormBox";
 
 import colors from "../lib/colors";
 

@@ -7,7 +7,7 @@ const useBookmarkApi = () => {
   const getBookmarkList = useCallback(async () => {
     const result = await requestWrapper(getAxios().get(`/bookmarks/me`));
 
-    if (result.status !== 200) {
+    if (!result || result.status !== 200) {
       return null;
     }
 
@@ -20,10 +20,10 @@ const useBookmarkApi = () => {
         getAxios().get(`/bookmarks/${contentsType}/@${contentsKey}`)
       );
 
-      if (result.status !== 200) {
+      if (!result || result.status !== 200) {
         return null;
       }
-
+      
       return result.data;
     },
     [getAxios]
@@ -35,7 +35,7 @@ const useBookmarkApi = () => {
         getAxios().post(`/bookmarks/${contentsType}/@${contentsKey}`)
       );
 
-      if (result.status !== 200) {
+      if (!result || result.status !== 200) {
         return null;
       }
 
@@ -50,10 +50,10 @@ const useBookmarkApi = () => {
         getAxios().delete(`/bookmarks/${contentsType}/@${contentsKey}`)
       );
 
-      if (result.status !== 200) {
+      if (!result || result.status !== 200) {
         return null;
       }
-
+      
       return result.data;
     },
     [getAxios]

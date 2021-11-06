@@ -1,9 +1,9 @@
 import { useState, useCallback } from "react";
 import Helmet from "react-helmet";
 
-import InputText from "../components/InputText";
-import Button from "../components/Button";
-import FormBox from "../components/FormBox";
+import InputText from "../components/input/InputText";
+import Button from "../components/input/Button";
+import FormBox from "../components/input/FormBox";
 
 const Signup = () => {
   const [signupForm, setSignupForm] = useState({
@@ -23,9 +23,7 @@ const Signup = () => {
   return (
     <FormBox>
       <Helmet>
-        <title>
-          회원가입 - 로우팜
-        </title>
+        <title>회원가입 - 로우팜</title>
       </Helmet>
       <label className="head">회원정보 입력</label>
       <InputText
