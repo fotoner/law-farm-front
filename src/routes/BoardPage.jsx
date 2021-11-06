@@ -2,6 +2,9 @@ import React from "react";
 import "../css/Board.css";
 import styled from "styled-components";
 import colors from "../lib/colors";
+import '@toast-ui/editor/dist/toastui-editor.css';
+import {Editor} from "@toast-ui/react-editor"
+
 
 const DivisionLine = styled.hr`
   margin: 16px 0;
@@ -67,9 +70,13 @@ const BoardPage = () => {
             <div className = 'form-wrapper'>
             <input className = "title-input" type='text' placeholder ='질문 제목을 입력해주세요.'
             required="required"/>
-            <textarea className="text-area" placeholder='본문 내용을 입력 해주세요.'></textarea>
+            <Editor
+             previewStyle="vertical"
+             height= "400px"
+             initialEditType="wysiwyg"
+             initialValue="contents"
+            /> 
             </div>
-            
             <div className = 'submit-button'>질문하기</div>
             <DivisionLine/>
           </FormMain>
