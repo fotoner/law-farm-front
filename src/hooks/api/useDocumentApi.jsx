@@ -16,7 +16,7 @@ const useDocumentApi = () => {
         })
       );
 
-      if (result.status !== 200) {
+      if (!result || result.status !== 200) {
         return null;
       }
 
@@ -31,7 +31,7 @@ const useDocumentApi = () => {
         getAxios().get(`/laws/${target}/@${key}`)
       );
 
-      if (result.status !== 200) {
+      if (!result || result.status !== 200) {
         return null;
       }
 
@@ -51,7 +51,7 @@ const useDocumentApi = () => {
         })
       );
 
-      if (result.status !== 200) {
+      if (!result || result.status !== 200) {
         return null;
       }
 

@@ -14,7 +14,6 @@ const useAxios = () => {
 
       return res;
     } catch (err) {
-      console.log(err.response);
       return err.response;
     }
   };
