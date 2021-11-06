@@ -1,9 +1,11 @@
 import { useState, useCallback } from "react";
+import { useHistory } from "react-router";
 import Helmet from "react-helmet";
 
 import InputText from "../components/input/InputText";
 import Button from "../components/input/Button";
 import FormBox from "../components/input/FormBox";
+import { postSignup } from "../lib/api";
 
 const Signup = () => {
   const [signupForm, setSignupForm] = useState({
@@ -12,6 +14,7 @@ const Signup = () => {
     password: "",
     password_re: "",
   });
+  const history = useHistory();
 
   const handleForm = useCallback(
     (e, target) => {
@@ -20,8 +23,37 @@ const Signup = () => {
     [signupForm]
   );
 
+  const handleSiginup = useCallback(
+    (e) => {
+      e.preventDefault();
+      const sendSignup = async () => {
+        const res = await postSignup(
+          signupForm.email,
+          signupForm.username,
+          signupForm.password
+        );
+        if (res) {
+          console.log(res);
+          history.replace("/login");
+        }
+      };
+
+      if (signupForm.password !== signupForm.password_re) {
+        console.log("password miss match");
+        return;
+      }
+
+      try {
+        sendSignup();
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [signupForm, history]
+  );
+
   return (
-    <FormBox>
+    <FormBox onSubmit={handleSiginup}>
       <Helmet>
         <title>회원가입 - 로우팜</title>
       </Helmet>

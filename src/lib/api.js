@@ -24,7 +24,13 @@ const testLoginToken = (jwt) => {
   });
 };
 
-const postSignup = (email, username, password) => {};
+const postSignup = (email, username, password) => {
+  return baseAxios.post('/users/', {
+    email: email,
+    username: username,
+    password: password
+  })
+};
 
 export {
   getLoginToken,
