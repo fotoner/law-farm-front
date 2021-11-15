@@ -1,22 +1,24 @@
 import { useCallback } from "react";
 import { useRecoilState } from "recoil";
 
+import useToast from "../useToast";
 import { jwtState, userState, JWT_CODE } from "../../recoil/user";
 
 import { getLoginToken, testLoginToken } from "../../lib/api";
-
 
 const USER_JWT = "userJwt";
 
 const useUserRecoil = () => {
   const [user, setUser] = useRecoilState(userState);
   const [jwt, setJwt] = useRecoilState(jwtState);
+  const { ToastSuccess, ToastFail } = useToast();
 
   const setLogout = useCallback(() => {
     setJwt({
       data: null,
       status: JWT_CODE.EXPIRED,
     });
+    ToastFail("로그아웃 되었습니다.")
   }, []);
 
   const loadUser = useCallback((resultJwt) => {
@@ -40,14 +42,14 @@ const useUserRecoil = () => {
           const resultJwt = res.data;
           localStorage.setItem(USER_JWT, JSON.stringify(resultJwt));
           loadUser(resultJwt);
+          ToastSuccess("로그인에 성공하였습니다!");
         })
         .catch((err) => {
-          console.log(err);
-          console.log(err.response);
           setJwt({
             ...jwt,
             status: JWT_CODE.FAIL,
           });
+          ToastFail("잘못된 비밀번호입니다.");
         });
     },
     [jwt]

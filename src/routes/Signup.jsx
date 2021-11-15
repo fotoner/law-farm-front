@@ -5,7 +5,9 @@ import Helmet from "react-helmet";
 import InputText from "../components/input/InputText";
 import Button from "../components/input/Button";
 import FormBox from "../components/input/FormBox";
+
 import { postSignup } from "../lib/api";
+import useToast from "../hooks/useToast";
 
 const Signup = () => {
   const [signupForm, setSignupForm] = useState({
@@ -15,6 +17,7 @@ const Signup = () => {
     password_re: "",
   });
   const history = useHistory();
+  const { ToastFail, ToastSuccess } = useToast();
 
   const handleForm = useCallback(
     (e, target) => {
@@ -33,20 +36,20 @@ const Signup = () => {
           signupForm.password
         );
         if (res) {
-          console.log(res);
+          ToastSuccess("계정을 생성했습니다!");
           history.replace("/login");
         }
       };
 
       if (signupForm.password !== signupForm.password_re) {
-        console.log("password miss match");
+        ToastFail("비밀번호가 서로 같지 않습니다.");
         return;
       }
 
       try {
         sendSignup();
       } catch (err) {
-        console.log(err);
+        ToastFail("이미 존재하는 이메일입니다.");
       }
     },
     [signupForm, history]

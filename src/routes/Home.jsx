@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import SearchInput from "../components/input/SearchInput";
 import colors from "../lib/colors";
+import useUserRecoil from "../hooks/auth/useUserRecoil";
+import HomeRecommend from "../components/HomeRecommend";
 
 const Content = styled.div`
   /* left: 0; */
@@ -30,6 +32,8 @@ const Input = styled.div`
 `;
 
 const Home = () => {
+  const { user } = useUserRecoil();
+
   return (
     <Content>
       <Helmet>
@@ -40,6 +44,7 @@ const Home = () => {
       <Input>
         <SearchInput />
       </Input>
+      {user && <HomeRecommend/>}
     </Content>
   );
 };
