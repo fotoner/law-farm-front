@@ -4,17 +4,16 @@ import Helmet from "react-helmet";
 
 import styled from "styled-components";
 import colors from "../lib/colors";
-import useBookmarkApi from "../hooks/api/useBookmarkApi";
+import useLogApi from "../hooks/api/useLogApi"
 import useUserRecoil from "../hooks/auth/useUserRecoil";
-import LikeButton from "../components/input/LikeButton";
 
-const BookMarkContent = styled.div`
+const LogContent = styled.div`
   margin-top: 72px;
   max-width: 700px;
   width: 100%;
 `;
 
-const BookmarkTitle = styled.h1`
+const LogTitle = styled.h1`
   font-size: 48px;
   margin: 0;
   color: ${colors.highlightColor};
@@ -23,13 +22,13 @@ const BookmarkTitle = styled.h1`
   align-items: center;
 `;
 
-const BookmarkCount = styled.div`
+const LogCount = styled.div`
   font-size: 24px;
   margin-left: 8px;
   color: ${colors.fontGrey};
 `;
 
-const BookmarkList = styled.ul`
+const LogList = styled.ul`
   margin: 48px 0 0 0;
   padding: 0;
   width: 100%;
@@ -70,40 +69,39 @@ const BookmarkList = styled.ul`
   }
 `;
 
-const Bookmark = () => {
+const Logs = () => {
   const { user } = useUserRecoil();
-  const [bookmarks, setBookmarks] = useState(null);
+  const [logs, setLogs] = useState(null);
   const [reloaded, setReloaded] = useState(false);
-  const { getBookmarkList } = useBookmarkApi();
+  const { getLogList } = useLogApi();
 
   useEffect(() => {
-    const loadBookmarks = async () => {
-      const res = await getBookmarkList();
+    const loadLogs = async () => {
+      const res = await getLogList();
 
-      console.log(res);
-      setBookmarks(res);
+      setLogs(res);
       setReloaded(true);
     };
 
     if (!reloaded && user) {
-      loadBookmarks();
+      loadLogs();
     }
   }, [user, reloaded]);
 
   return (
-    <BookMarkContent>
+    <LogContent>
       <Helmet>
-        <title>북마크 - 로우팜</title>
+        <title>열람 기록 - 로우팜</title>
       </Helmet>
-      <BookmarkTitle>
-        북마크
-        {bookmarks && (
-          <BookmarkCount>{`(총 ${bookmarks.count}개)`}</BookmarkCount>
+      <LogTitle>
+        열람 기록
+        {logs && (
+          <LogCount>{`(총 ${logs.count}개)`}</LogCount>
         )}
-      </BookmarkTitle>
-      <BookmarkList>
-        {bookmarks &&
-          bookmarks.data.map(
+      </LogTitle>
+      <LogList>
+        {logs &&
+          logs.data.map(
             ({ content_key, content_type, text, created_at }) => (
               <li key={`${content_type}-${created_at}`}>
                 <div className="left">
@@ -112,25 +110,17 @@ const Bookmark = () => {
                     <div className="content">
                       <div>{text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]}</div>
                       <div className="date">
-                        등록일자: {created_at.slice(0, 10)}
+                        열람일자: {created_at.slice(0, 10)}
                       </div>
                     </div>
                   </Link>
                 </div>
-                <div className="right">
-                  <LikeButton
-                    contentsType={content_type}
-                    contentsKey={content_key}
-                    bookmarkHandler={setReloaded}
-                    bookmarkState={true}
-                  />
-                </div>
               </li>
             )
           )}
-      </BookmarkList>
-    </BookMarkContent>
+      </LogList>
+    </LogContent>
   );
 };
 
-export default Bookmark;
+export default Logs;

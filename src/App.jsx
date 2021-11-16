@@ -13,8 +13,10 @@ import SearchResult from "./routes/SearchResult";
 import Login from "./routes/Login";
 import Logout from "./routes/Logout";
 import Signup from "./routes/Signup";
+import UserPage from "./routes/UserPage";
 import MyPage from "./routes/MyPage";
 import Bookmark from "./routes/Bookmark";
+import Logs from "./routes/Logs";
 import Recommends from "./routes/Recommends";
 import NotFound from "./routes/NotFound";
 
@@ -42,7 +44,9 @@ const routeList = [
   { path: "/logout", name: "logout", Component: Logout },
   { path: "/signup", name: "signup", Component: Signup },
   { path: "/mypage", name: "mypage", Component: MyPage },
+  { path: "/userpage/@:userId", name: "userpage", Component: UserPage },
   { path: "/bookmark", name: "bookmark", Component: Bookmark },
+  { path: "/logs", name: "logs", Component: Logs },
   { path: "/result", name: "result", Component: SearchResult },
   { path: "/article/@:key", name: "article", Component: ArticleDetail },
   { path: "/recommends", name: "recommends", Component: Recommends },

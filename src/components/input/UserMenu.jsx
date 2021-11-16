@@ -64,6 +64,9 @@ const UserMenu = ({ handler, toggle }) => {
         <Link to="/bookmark">북마크</Link>
       </li>
       <li>
+        <Link to="/logs">열람기록</Link>
+      </li>
+      <li>
         <Link to="/logout">로그아웃</Link>
       </li>
     </MenuUl>

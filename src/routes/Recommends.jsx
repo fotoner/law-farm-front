@@ -99,13 +99,16 @@ const Recommends = () => {
         <title>맞춤 법률 - 로우팜</title>
       </Helmet>
       <Title>맞춤 법률</Title>
-      <SelectorButton
-        categoryList={categoryList}
-        handler={setCategory}
-        category={category}
-      />
+      {user && (
+          <SelectorButton
+            categoryList={categoryList}
+            handler={setCategory}
+            category={category}
+          />
+      )}
       {user && articleList && <ResultContainer articleList={articleList} />}
       {user && !articleList && <Notice>결과가 존재하지 않습니다...</Notice>}
+      {!user && <Notice>로그인을 해주시기 바랍니다</Notice>}
     </RecommendsStyle>
   );
 };

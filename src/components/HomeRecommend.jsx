@@ -74,15 +74,17 @@ const HomeRecommend = () => {
 
   return (
     <RecommendStyle>
-      <Title>
-        <div className="left">맞춤 법률</div>
-        <div className="right"> 
-          <Link to="/recommends">
-            더보기  
-          </Link>
-        </div>
-      </Title>
-      {articleList && <ResultContainer articleList={articleList} />}
+      {articleList && (
+        <>
+          <Title>
+            <div className="left">맞춤 법률</div>
+            <div className="right">
+              <Link to="/recommends">더보기</Link>
+            </div>
+          </Title>
+          <ResultContainer articleList={articleList} />
+        </>
+      )}
     </RecommendStyle>
   );
 };
