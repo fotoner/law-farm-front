@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import colors from "../lib/colors";
@@ -37,27 +38,26 @@ const HomeRecommend = () => {
   const [articleList, setArticleList] = useState(null);
 
   const { user } = useUserRecoil();
-  const { getCombinedRecommend, getLogRecommend, getBookmarkRecommend } =
-    useRecommendApi();
+  const recommendApi = useRecommendApi();
   const { ToastInfo } = useToast();
 
   useEffect(() => {
     const getRecommend = async () => {
-      let res = await getCombinedRecommend();
+      let res = await recommendApi.getCombinedRecommend();
 
       if (res) {
         setArticleList(res.result.slice(0, 3));
         return;
       }
 
-      res = await getLogRecommend();
+      res = await recommendApi.getLogRecommend();
 
       if (res) {
         setArticleList(res.result.slice(0, 3));
         return;
       }
 
-      res = await getBookmarkRecommend();
+      res = await recommendApi.getBookmarkRecommend();
 
       if (res) {
         setArticleList(res.result.slice(0, 3));
@@ -76,7 +76,11 @@ const HomeRecommend = () => {
     <RecommendStyle>
       <Title>
         <div className="left">맞춤 법률</div>
-        <div className="right">더보기</div>
+        <div className="right"> 
+          <Link to="/recommends">
+            더보기  
+          </Link>
+        </div>
       </Title>
       {articleList && <ResultContainer articleList={articleList} />}
     </RecommendStyle>

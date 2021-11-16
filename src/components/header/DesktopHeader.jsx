@@ -47,6 +47,19 @@ const Navbar = styled.nav`
       }
     }
     .center {
+      a {
+        transition: color 0.15s;
+        color: ${colors.fontGrey};
+        font-weight: bold;
+        
+        :hover { 
+          color: ${colors.highlightColor};
+        }
+
+        :not(:last-child) {
+          margin-right: 16px;
+        }
+      }
     }
     .right {
       .mypage {
@@ -82,7 +95,12 @@ const DesktopHeader = () => {
         <div className="left">
           <Link to="/">로우팜</Link>
         </div>
-        <div className="center"></div>
+        <div className="center">
+          <Link to="/recommends">Recommends</Link>
+          <Link to="/">Article</Link>
+          <Link to="/">Forum</Link>
+
+        </div>
         <div className="right">
           {!user ? (
             <Link to="/login" className="login">

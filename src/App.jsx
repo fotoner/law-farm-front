@@ -15,6 +15,7 @@ import Logout from "./routes/Logout";
 import Signup from "./routes/Signup";
 import MyPage from "./routes/MyPage";
 import Bookmark from "./routes/Bookmark";
+import Recommends from "./routes/Recommends";
 import NotFound from "./routes/NotFound";
 
 import useUserRecoil from "./hooks/auth/useUserRecoil";
@@ -44,6 +45,7 @@ const routeList = [
   { path: "/bookmark", name: "bookmark", Component: Bookmark },
   { path: "/result", name: "result", Component: SearchResult },
   { path: "/article/@:key", name: "article", Component: ArticleDetail },
+  { path: "/recommends", name: "recommends", Component: Recommends },
 ];
 
 const App = () => {
