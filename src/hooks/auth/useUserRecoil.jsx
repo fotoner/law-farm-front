@@ -60,6 +60,11 @@ const useUserRecoil = () => {
 
     if (resultJwt) {
       loadUser(resultJwt);
+    } else {
+      setJwt({
+        data: null,
+        status: JWT_CODE.NONE,
+      });
     }
   }, []);
 
