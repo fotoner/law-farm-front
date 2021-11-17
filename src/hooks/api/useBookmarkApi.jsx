@@ -6,15 +6,20 @@ const useBookmarkApi = () => {
   const { requestWrapper, getAxios } = useAxios();
   const { ToastSuccess, ToastFail } = useToast();
 
-  const getBookmarkList = useCallback(async () => {
-    const result = await requestWrapper(getAxios().get(`/bookmarks/me`));
+  const getBookmarkList = useCallback(
+    async (skip = 0, limit = 10) => {
+      const result = await requestWrapper(
+        getAxios().get(`/bookmarks/me?skip=${skip}&limit=${limit}`)
+      );
 
-    if (!result || result.status !== 200) {
-      return null;
-    }
+      if (!result || result.status !== 200) {
+        return null;
+      }
 
-    return result.data;
-  }, [getAxios]);
+      return result.data;
+    },
+    [getAxios]
+  );
 
   const getBookmark = useCallback(
     async (contentsKey, contentsType = "article") => {

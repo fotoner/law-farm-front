@@ -6,6 +6,7 @@ const userState = atom({
 })
 
 const JWT_CODE = {
+  NULL: "JWT_NULL",
   NONE: "JWT_NONE",
   OK: "JWT_OK",
   EXPIRED: "JWT_EXPIRED",
@@ -15,7 +16,7 @@ const JWT_CODE = {
 const jwtState = atom({
   key: 'jwtState',
   default: {
-    status: JWT_CODE.NONE,
+    status: JWT_CODE.NULL,
     data : null
   }
 })

@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+import { Link, useLocation, useHistory } from "react-router-dom";
+import queryString from "query-string";
 import Helmet from "react-helmet";
 
 import styled from "styled-components";
 import colors from "../lib/colors";
 import useBookmarkApi from "../hooks/api/useBookmarkApi";
 import useUserRecoil from "../hooks/auth/useUserRecoil";
+
 import LikeButton from "../components/input/LikeButton";
+import PageButton from "../components/input/PageButton";
 
 const BookMarkContent = styled.div`
   margin-top: 72px;
@@ -74,11 +77,26 @@ const Bookmark = () => {
   const { user } = useUserRecoil();
   const [bookmarks, setBookmarks] = useState(null);
   const [reloaded, setReloaded] = useState(false);
+
+  const history = useHistory();
+  const { search } = useLocation();
+  
+  const { page } = queryString.parse(search);
   const { getBookmarkList } = useBookmarkApi();
+
+  const handlePage = useCallback(
+    (nextPage) => {
+      history.push(`/bookmark?page=${nextPage}`);
+      setReloaded(false);
+    },
+    [history]
+  );
 
   useEffect(() => {
     const loadBookmarks = async () => {
-      const res = await getBookmarkList();
+      const curPage = page? page : 1;
+
+      const res = await getBookmarkList((curPage - 1) * 10, (curPage - 1) * 10 + 10);
 
       console.log(res);
       setBookmarks(res);
@@ -105,7 +123,7 @@ const Bookmark = () => {
         {bookmarks &&
           bookmarks.data.map(
             ({ content_key, content_type, text, created_at }) => (
-              <li key={`${content_type}-${content_key}`}>
+              <li key={`${content_type}-${created_at}`}>
                 <div className="left">
                   <Link to={`/${content_type}/@${content_key}`}>
                     <div className="title">{content_key}</div>
@@ -129,6 +147,13 @@ const Bookmark = () => {
             )
           )}
       </BookmarkList>
+      {bookmarks && (
+        <PageButton
+          maxItemsCount={bookmarks.count}
+          page={Number(page)}
+          handler={handlePage}
+        />
+      )}
     </BookMarkContent>
   );
 };
