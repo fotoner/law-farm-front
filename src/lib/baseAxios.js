@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "https://api.fotone.moe/v1" //.env로 바꾸기
+const URL = "http://localhost:8000/v1" //.env로 바꾸기
 
 const instance = axios.create({
   baseURL: `${URL}`,
