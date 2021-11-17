@@ -1,11 +1,15 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+import { Link, useLocation, useHistory } from "react-router-dom";
+import queryString from "query-string";
 import Helmet from "react-helmet";
 
 import styled from "styled-components";
+
 import colors from "../lib/colors";
-import useLogApi from "../hooks/api/useLogApi"
+import useLogApi from "../hooks/api/useLogApi";
 import useUserRecoil from "../hooks/auth/useUserRecoil";
+
+import PageButton from "../components/input/PageButton";
 
 const LogContent = styled.div`
   margin-top: 72px;
@@ -73,12 +77,26 @@ const Logs = () => {
   const { user } = useUserRecoil();
   const [logs, setLogs] = useState(null);
   const [reloaded, setReloaded] = useState(false);
+
+  const history = useHistory();
+  const { search } = useLocation();
+
+  const { page } = queryString.parse(search);
   const { getLogList } = useLogApi();
+
+  const handlePage = useCallback(
+    (nextPage) => {
+      history.push(`/logs?page=${nextPage}`);
+      setReloaded(false);
+    },
+    [history]
+  );
 
   useEffect(() => {
     const loadLogs = async () => {
-      const res = await getLogList();
+      const curPage = page ? page : 1;
 
+      const res = await getLogList((curPage - 1) * 10, (curPage - 1) * 10 + 10);
       setLogs(res);
       setReloaded(true);
     };
@@ -86,7 +104,7 @@ const Logs = () => {
     if (!reloaded && user) {
       loadLogs();
     }
-  }, [user, reloaded]);
+  }, [user, reloaded, page]);
 
   return (
     <LogContent>
@@ -95,30 +113,33 @@ const Logs = () => {
       </Helmet>
       <LogTitle>
         열람 기록
-        {logs && (
-          <LogCount>{`(총 ${logs.count}개)`}</LogCount>
-        )}
+        {logs && <LogCount>{`(총 ${logs.count}개)`}</LogCount>}
       </LogTitle>
       <LogList>
         {logs &&
-          logs.data.map(
-            ({ content_key, content_type, text, created_at }) => (
-              <li key={`${content_type}-${created_at}`}>
-                <div className="left">
-                  <Link to={`/${content_type}/@${content_key}`}>
-                    <div className="title">{content_key}</div>
-                    <div className="content">
-                      <div>{text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]}</div>
-                      <div className="date">
-                        열람일자: {created_at.slice(0, 10)}
-                      </div>
+          logs.data.map(({ content_key, content_type, text, created_at }) => (
+            <li key={`${content_type}-${created_at}`}>
+              <div className="left">
+                <Link to={`/${content_type}/@${content_key}`}>
+                  <div className="title">{content_key}</div>
+                  <div className="content">
+                    <div>{text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]}</div>
+                    <div className="date">
+                      열람일자: {created_at.slice(0, 10)}
                     </div>
-                  </Link>
-                </div>
-              </li>
-            )
-          )}
+                  </div>
+                </Link>
+              </div>
+            </li>
+          ))}
       </LogList>
+      {logs && (
+        <PageButton
+          maxItemsCount={logs.count}
+          page={Number(page)}
+          handler={handlePage}
+        />
+      )}
     </LogContent>
   );
 };

@@ -8,6 +8,7 @@ import Header from "./components/header/Header";
 import TransitionWrapper from "./components/TransitionWrapper";
 
 import Home from "./routes/Home";
+import ArticleList from "./routes/ArticleList";
 import ArticleDetail from "./routes/ArticleDetail";
 import SearchResult from "./routes/SearchResult";
 import Login from "./routes/Login";
@@ -48,7 +49,8 @@ const routeList = [
   { path: "/bookmark", name: "bookmark", Component: Bookmark },
   { path: "/logs", name: "logs", Component: Logs },
   { path: "/result", name: "result", Component: SearchResult },
-  { path: "/article/@:key", name: "article", Component: ArticleDetail },
+  { path: "/article", name: "articleList", Component: ArticleList },
+  { path: "/article/@:key", name: "articleDetail", Component: ArticleDetail },
   { path: "/recommends", name: "recommends", Component: Recommends },
 ];
 
