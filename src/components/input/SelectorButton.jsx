@@ -3,7 +3,6 @@ import styled from "styled-components";
 import colors from "../../lib/colors";
 
 const CategoryContainer = styled.div`
-  display: flex;
   margin-bottom: 16px;
 
   .selected {
@@ -14,8 +13,10 @@ const CategoryContainer = styled.div`
 `;
 
 const CategoryButton = styled.div`
+  display:inline-block;
+
   cursor: pointer;
-  margin-right: 16px;
+  margin-right: 8px;
 
   box-sizing: border-box;
   padding: 4px 16px;

@@ -19,7 +19,12 @@ import MyPage from "./routes/MyPage";
 import Bookmark from "./routes/Bookmark";
 import Logs from "./routes/Logs";
 import Recommends from "./routes/Recommends";
+import ForumList from "./routes/ForumList";
+import ForumWrite from "./routes/ForumWrite";
+import ForumDetail from "./routes/ForumDetail";
 import NotFound from "./routes/NotFound";
+
+
 
 import useUserRecoil from "./hooks/auth/useUserRecoil";
 import useJwtExpire from "./hooks/auth/useJwtExpire";
@@ -51,6 +56,9 @@ const routeList = [
   { path: "/result", name: "result", Component: SearchResult },
   { path: "/article", name: "articleList", Component: ArticleList },
   { path: "/article/@:key", name: "articleDetail", Component: ArticleDetail },
+  { path: "/forum", name: "forumList", Component: ForumList },
+  { path: "/forum/write", name: "forumWrite", Component: ForumWrite },
+  { path: "/forum/@:key", name: "forumDetail", Component: ForumDetail },
   { path: "/recommends", name: "recommends", Component: Recommends },
 ];
 

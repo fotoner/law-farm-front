@@ -97,8 +97,8 @@ const DesktopHeader = () => {
         </div>
         <div className="center">
           <Link to="/recommends">Recommends</Link>
-          <Link to="/">Article</Link>
-          <Link to="/">Forum</Link>
+          <Link to="/article">Article</Link>
+          <Link to="/forum">Forum</Link>
 
         </div>
         <div className="right">
