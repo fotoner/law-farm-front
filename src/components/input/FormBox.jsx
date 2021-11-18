@@ -17,7 +17,7 @@ const FormStyle = styled.article`
   & > .inner {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     width: 100%;
     flex: 1;
@@ -25,12 +25,15 @@ const FormStyle = styled.article`
 `;
 
 const FormMain = styled.form`
+  margin: auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 64px;
-  width: 30rem;
+  min-width: 30rem;
+  max-width: 900px;
+  ${(props) => (props.fullWidth ? "width: 100%;" : "")}
   background-color: #fff;
   box-sizing: border-box;
   box-shadow: 10px 10px 20px 1px rgb(0 0 0 / 5%);
@@ -44,14 +47,23 @@ const FormMain = styled.form`
   .inputBox {
     margin-bottom: 16px;
   }
+  .customEditor {
+    width: 100%;
+    .toastui-editor-defaultUI {
+      max-width: 1024px;
+      width: 100%;
+    }
+  }
 `;
 
-const FormBox = ({ children, onSubmit }) => {
+const FormBox = ({ children, onSubmit, fullWidth }) => {
   return (
     <FormStyle className="login">
       <div className="header-gap" />
       <div className="inner">
-        <FormMain onSubmit={onSubmit}>{children}</FormMain>
+        <FormMain onSubmit={onSubmit} fullWidth={fullWidth}>
+          {children}
+        </FormMain>
       </div>
     </FormStyle>
   );

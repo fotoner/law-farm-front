@@ -45,7 +45,7 @@ const LogList = styled.ul`
     height: 100%;
     border-radius: 20px;
     box-shadow: 0 2px 10px -5px black;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     display: flex;
     padding: 20px;
     box-sizing: border-box;
@@ -88,6 +88,7 @@ const Logs = () => {
     (nextPage) => {
       history.push(`/logs?page=${nextPage}`);
       setReloaded(false);
+      window.scrollTo(0, 0);
     },
     [history]
   );
@@ -96,7 +97,7 @@ const Logs = () => {
     const loadLogs = async () => {
       const curPage = page ? page : 1;
 
-      const res = await getLogList((curPage - 1) * 10, (curPage - 1) * 10 + 10);
+      const res = await getLogList((curPage - 1) * 10, 10);
       setLogs(res);
       setReloaded(true);
     };

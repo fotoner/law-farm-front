@@ -45,7 +45,7 @@ const BookmarkList = styled.ul`
     height: 100%;
     border-radius: 20px;
     box-shadow: 0 2px 10px -5px black;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     display: flex;
     padding: 20px;
     box-sizing: border-box;
@@ -80,7 +80,7 @@ const Bookmark = () => {
 
   const history = useHistory();
   const { search } = useLocation();
-  
+
   const { page } = queryString.parse(search);
   const { getBookmarkList } = useBookmarkApi();
 
@@ -88,17 +88,17 @@ const Bookmark = () => {
     (nextPage) => {
       history.push(`/bookmark?page=${nextPage}`);
       setReloaded(false);
+      window.scrollTo(0, 0);
     },
     [history]
   );
 
   useEffect(() => {
     const loadBookmarks = async () => {
-      const curPage = page? page : 1;
+      const curPage = page ? page : 1;
 
-      const res = await getBookmarkList((curPage - 1) * 10, (curPage - 1) * 10 + 10);
+      const res = await getBookmarkList((curPage - 1) * 10, 10);
 
-      console.log(res);
       setBookmarks(res);
       setReloaded(true);
     };

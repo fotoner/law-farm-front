@@ -17,7 +17,7 @@ const ResultItem = styled.div`
   box-shadow: 0 2px 10px -5px black;
   border-radius: 20px;
 
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   width: 100%;
   //height: 300px;
 
@@ -45,12 +45,12 @@ const DetailLink = styled.div`
   color: ${colors.highlightColor};
 `;
 
-const ResultContainer = ({articleList}) => {
+const ResultContainer = ({ articleList }) => {
   return (
     <ResultBox>
       {articleList &&
         articleList.map((val, idx) => (
-          <ResultItem key={idx}>
+          <ResultItem key={val.id}>
             <Link to={`/article/@${val.name}`}>
               <div className="title">{val.name}</div>
               <div className="content">

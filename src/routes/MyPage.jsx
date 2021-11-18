@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 import { useRecoilState } from "recoil";
 import { JWT_CODE, jwtState } from "../recoil/user";
@@ -34,17 +34,13 @@ const MyPage = () => {
 
     if (jwt.status === JWT_CODE.NONE) {
       history.replace("/");
-
-      return;
     } else if (jwt.status === JWT_CODE.OK) {
       loadUserInfo();
     }
   }, [jwt]);
 
   return (
-    <PageStyle>
-      {userInfo && <UserDetail userInfo={userInfo}/>}
-    </PageStyle>
+    <PageStyle>{userInfo && <UserDetail userInfo={userInfo} />}</PageStyle>
   );
 };
 
