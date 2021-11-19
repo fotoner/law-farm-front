@@ -104,7 +104,7 @@ const ForumWrite = () => {
         postForum(editorMd);
       }
     },
-    [editor]
+    [editor, title, forumType]
   );
 
   const handleTitle = useCallback((e, target) => {

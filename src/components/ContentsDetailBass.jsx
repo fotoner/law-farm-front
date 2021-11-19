@@ -83,7 +83,7 @@ const ContentsDetailBass = ({ contentsType }) => {
   return (
     <Article>
       <Helmet>
-        <title>{key} - 로우팜</title>
+        <title>{key} - 법률 - 로우팜</title>
       </Helmet>
       <ContentsBody>
         <ArticleHeader>

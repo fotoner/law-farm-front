@@ -58,7 +58,59 @@ const useForumApi = () => {
     [getAxios]
   );
 
-  return { loadForumList, loadDetail, addForum };
+  const addForumLike = useCallback(
+    async (key) => {
+      const result = await requestWrapper(
+        getAxios().post(`/forums/@${key}/like`)
+      );
+
+      if (!result || result.status !== 200) {
+        return null;
+      }
+
+      return result.data;
+    },
+    [getAxios]
+  );
+
+  const getForumLike = useCallback(
+    async (key) => {
+      const result = await requestWrapper(
+        getAxios().get(`/forums/@${key}/like`)
+      );
+
+      if (!result || result.status !== 200) {
+        return null;
+      }
+
+      return result.data;
+    },
+    [getAxios]
+  );
+
+  const removeForumLike = useCallback(
+    async (key) => {
+      const result = await requestWrapper(
+        getAxios().delete(`/forums/@${key}/like`)
+      );
+
+      if (!result || result.status !== 200) {
+        return null;
+      }
+
+      return result.data;
+    },
+    [getAxios]
+  );
+
+  return {
+    loadForumList,
+    loadDetail,
+    addForum,
+    addForumLike,
+    getForumLike,
+    removeForumLike,
+  };
 };
 
 export default useForumApi;

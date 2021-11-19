@@ -11,11 +11,17 @@ import SelectorButton from "../components/input/SelectorButton";
 import PageButton from "../components/input/PageButton";
 
 import useForumApi from "../hooks/api/useForumApi";
+import useUserRecoil from "../hooks/auth/useUserRecoil";
+import Button from "../components/input/Button";
 
 const PageStyle = styled.div`
   margin-top: 72px;
   width: 100%;
   max-width: 700px;
+
+  .writeButton {
+    color: #fff;
+  }
 `;
 
 const Title = styled.div`
@@ -191,6 +197,7 @@ const ForumList = () => {
 
   const { page } = queryString.parse(search);
   const { loadForumList } = useForumApi();
+  const { user } = useUserRecoil();
 
   const handlePage = useCallback(
     (nextPage) => {
@@ -275,6 +282,13 @@ const ForumList = () => {
             </ResultItem>
           ))}
       </ResultBox>
+      {user && (
+        <Button>
+          <Link className="writeButton" to="/forum/write">
+            글 쓰기
+          </Link>
+        </Button>
+      )}
       {forums && (
         <PageButton
           maxItemsCount={forums.count}
