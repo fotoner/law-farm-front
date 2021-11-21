@@ -18,10 +18,6 @@ const PageStyle = styled.div`
   margin-top: 72px;
   width: 100%;
   max-width: 700px;
-
-  .writeButton {
-    color: #fff;
-  }
 `;
 
 const Title = styled.div`
@@ -283,11 +279,14 @@ const ForumList = () => {
           ))}
       </ResultBox>
       {user && (
-        <Button>
-          <Link className="writeButton" to="/forum/write">
-            글 쓰기
-          </Link>
-        </Button>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            history.push("/forum/write");
+          }}
+        >
+          <Button>글 쓰기</Button>
+        </form>
       )}
       {forums && (
         <PageButton

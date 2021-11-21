@@ -51,8 +51,8 @@ const Navbar = styled.nav`
         transition: color 0.15s;
         color: ${colors.fontGrey};
         font-weight: bold;
-        
-        :hover { 
+
+        :hover {
           color: ${colors.highlightColor};
         }
 
@@ -97,9 +97,8 @@ const DesktopHeader = () => {
         </div>
         <div className="center">
           <Link to="/recommends">Recommends</Link>
-          <Link to="/article">Article</Link>
+          <Link to="/laws/@근로기준법?page=1">Laws</Link>
           <Link to="/forum">Forum</Link>
-
         </div>
         <div className="right">
           {!user ? (

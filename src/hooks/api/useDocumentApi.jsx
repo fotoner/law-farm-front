@@ -60,7 +60,27 @@ const useDocumentApi = () => {
     [getAxios]
   );
 
-  return { searchDocument, loadDetail, relatedDocument };
+  const relatedStatute = useCallback(
+    async (key, target = "article", size = 25) => {
+      const result = await requestWrapper(
+        getAxios().get(`/recommends/${target}/statute`, {
+          params: {
+            key: key,
+            size: size,
+          },
+        })
+      );
+
+      if (!result || result.status !== 200) {
+        return null;
+      }
+
+      return result.data;
+    },
+    [getAxios]
+  );
+
+  return { searchDocument, loadDetail, relatedDocument, relatedStatute };
 };
 
 export default useDocumentApi;

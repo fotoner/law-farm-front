@@ -9,11 +9,13 @@ import useRecommendApi from "../hooks/api/useRecommendApi";
 import useToast from "../hooks/useToast";
 
 import ResultContainer from "./ResultContainer";
+import StatuteContainer from "./StatuteContainer";
 
 const RecommendStyle = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
+  margin-bottom: 64px;
 `;
 
 const Title = styled.div`
@@ -36,6 +38,7 @@ const Title = styled.div`
 
 const HomeRecommend = () => {
   const [articleList, setArticleList] = useState(null);
+  const [statuteList, setStatuteList] = useState(null);
 
   const { user } = useUserRecoil();
   const recommendApi = useRecommendApi();
@@ -47,6 +50,10 @@ const HomeRecommend = () => {
 
       if (res) {
         setArticleList(res.result.slice(0, 3));
+
+        const statuteRes = await recommendApi.getCombinedRecommend("statute");
+        setStatuteList(statuteRes.result.slice(0, 5));
+
         return;
       }
 
@@ -54,6 +61,10 @@ const HomeRecommend = () => {
 
       if (res) {
         setArticleList(res.result.slice(0, 3));
+
+        const statuteRes = await recommendApi.getLogRecommend("statute");
+        setStatuteList(statuteRes.result.slice(0, 5));
+
         return;
       }
 
@@ -61,6 +72,10 @@ const HomeRecommend = () => {
 
       if (res) {
         setArticleList(res.result.slice(0, 3));
+
+        const statuteRes = await recommendApi.getLogRecommend("statute");
+        setStatuteList(statuteRes.result.slice(0, 5));
+
         return;
       }
 
@@ -77,12 +92,13 @@ const HomeRecommend = () => {
       {articleList && (
         <>
           <Title>
-            <div className="left">맞춤 법률</div>
+            <div className="left">맞춤 법조항</div>
             <div className="right">
               <Link to="/recommends">더보기</Link>
             </div>
           </Title>
           <ResultContainer articleList={articleList} />
+          <StatuteContainer statuteList={statuteList} />
         </>
       )}
     </RecommendStyle>

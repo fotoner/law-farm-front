@@ -40,11 +40,11 @@ const Home = () => {
         <title>로우팜</title>
       </Helmet>
       <Title>로우팜</Title>
-      <SubTitle>우리를 위한 법률 검색</SubTitle>
+      <SubTitle>우리를 위한 법률</SubTitle>
       <Input>
         <SearchInput />
       </Input>
-      {user && <HomeRecommend/>}
+      {user && <HomeRecommend />}
     </Content>
   );
 };

@@ -8,7 +8,6 @@ const useContentsDetail = ({ contentsType, contentsKey }) => {
   useEffect(() => {
     const requestDetail = async () => {
       const res = await loadDetail(contentsKey, contentsType);
-
       setContents(res);
     };
     if (contentsKey) {

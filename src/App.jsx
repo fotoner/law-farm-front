@@ -8,7 +8,7 @@ import Header from "./components/header/Header";
 import TransitionWrapper from "./components/TransitionWrapper";
 
 import Home from "./routes/Home";
-import ArticleList from "./routes/ArticleList";
+import LawList from "./routes/LawList";
 import ArticleDetail from "./routes/ArticleDetail";
 import SearchResult from "./routes/SearchResult";
 import Login from "./routes/Login";
@@ -26,6 +26,8 @@ import NotFound from "./routes/NotFound";
 
 import useUserRecoil from "./hooks/auth/useUserRecoil";
 import useJwtExpire from "./hooks/auth/useJwtExpire";
+
+import colors from "./lib/colors";
 
 const Main = styled.div`
   display: flex;
@@ -52,7 +54,7 @@ const routeList = [
   { path: "/bookmark", name: "bookmark", Component: Bookmark },
   { path: "/logs", name: "logs", Component: Logs },
   { path: "/result", name: "result", Component: SearchResult },
-  { path: "/article", name: "articleList", Component: ArticleList },
+  { path: "/laws/@:forumId", name: "lawList", Component: LawList },
   { path: "/article/@:key", name: "articleDetail", Component: ArticleDetail },
   { path: "/forum", name: "forumList", Component: ForumList },
   { path: "/forum/write", name: "forumWrite", Component: ForumWrite },

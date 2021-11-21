@@ -50,12 +50,24 @@ const ContentsBody = styled.div`
 `;
 
 const Text = styled.div`
-  word-break: keep-all;
+  //word-break: keep-all;
 `;
 
 const Paragraph = styled.div`
   margin: 40px 0;
 `;
+
+const ParseNewLine = (text) => {
+  const parsedLine = text.split("\n");
+
+  return (
+    <div>
+      {parsedLine.map((val, idx) => (
+        <p key={idx}>{val}</p>
+      ))}
+    </div>
+  );
+};
 
 const ContentsDetailBass = ({ contentsType }) => {
   const { key } = useParams();
@@ -99,16 +111,23 @@ const ContentsDetailBass = ({ contentsType }) => {
         </ArticleHeader>
         <Text>
           {contents &&
-            (contents.result.text.length > 0
-              ? contents.result.text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]
-              : contents.result.text)}
+            (contents.result.paragraphs.length > 0 && contents.result.text ? (
+              contents.result.text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]
+            ) : (
+              <Paragraph>
+                {" "}
+                <Text> {ParseNewLine(contents.result.text)} </Text>{" "}
+              </Paragraph>
+            ))}
         </Text>
         {contents &&
           contents.result.paragraphs.length > 0 &&
           contents.result.paragraphs.map((val, idx) => (
             <Paragraph key={idx}>
               <SubTitle>{val.paragraph}</SubTitle>
-              <Text>{val.text.replace(contents.result.text, "")}</Text>
+              <Text>
+                {ParseNewLine(val.text.replace(contents.result.text, ""))}
+              </Text>
             </Paragraph>
           ))}
       </ContentsBody>

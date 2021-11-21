@@ -17,6 +17,7 @@ const ResultItem = styled.div`
   box-shadow: 0 2px 10px -5px black;
   border-radius: 20px;
 
+  background-color: #fff;
   margin-bottom: 15px;
   width: 100%;
   //height: 300px;
@@ -50,7 +51,7 @@ const ResultContainer = ({ articleList }) => {
     <ResultBox>
       {articleList &&
         articleList.map((val, idx) => (
-          <ResultItem key={val.id}>
+          <ResultItem key={val.name}>
             <Link to={`/article/@${val.name}`}>
               <div className="title">{val.name}</div>
               <div className="content">
@@ -61,7 +62,7 @@ const ResultContainer = ({ articleList }) => {
                 </div>
                 <div className="paragraphCount">
                   {val.about.paragraphs.length > 0
-                    ? `*${val.about.paragraphs.length}개의 보조항 존재*`
+                    ? `*${val.about.paragraphs.length}개의 항 존재*`
                     : ""}
                 </div>
               </div>

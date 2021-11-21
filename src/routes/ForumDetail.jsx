@@ -5,6 +5,8 @@ import Helmet from "react-helmet";
 import { AiOutlineBulb, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 import styled from "styled-components";
+
+import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Viewer } from "@toast-ui/react-editor";
 
 import useForumApi from "../hooks/api/useForumApi";
@@ -13,9 +15,12 @@ import colors from "../lib/colors";
 import { useRecoilState } from "recoil";
 import { JWT_CODE, jwtState } from "../recoil/user";
 import useToast from "../hooks/useToast";
+import ForumRecommendContent from "../components/ForumRecommendContent";
 
 const PageStyle = styled.div`
-  width: 100vw;
+  position: absolute;
+  width: 100%;
+  //margin-left: calc(-50vw + 50%);
   min-height: 100vh;
   background-color: ${colors.background};
   display: flex;
@@ -167,6 +172,7 @@ const ForumDetail = () => {
               </div>
             </div>
           </MainContent>
+          <ForumRecommendContent forumId={key} />
         </MainWrapper>
       )}
     </PageStyle>

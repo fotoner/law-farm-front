@@ -103,6 +103,44 @@ const useForumApi = () => {
     [getAxios]
   );
 
+  const getRecommendStatue = useCallback(
+    async (key, size = 10) => {
+      const result = await requestWrapper(
+        getAxios().get(`/recommends/forum/@${key}/statute`, {
+          params: {
+            size: size,
+          },
+        })
+      );
+
+      if (!result || result.status !== 200) {
+        return null;
+      }
+
+      return result.data;
+    },
+    [getAxios]
+  );
+
+  const getRecommendArticle = useCallback(
+    async (key, size = 5) => {
+      const result = await requestWrapper(
+        getAxios().get(`/recommends/forum/@${key}/article`, {
+          params: {
+            size: size,
+          },
+        })
+      );
+
+      if (!result || result.status !== 200) {
+        return null;
+      }
+
+      return result.data;
+    },
+    [getAxios]
+  );
+
   return {
     loadForumList,
     loadDetail,
@@ -110,6 +148,8 @@ const useForumApi = () => {
     addForumLike,
     getForumLike,
     removeForumLike,
+    getRecommendStatue,
+    getRecommendArticle,
   };
 };
 

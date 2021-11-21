@@ -4,15 +4,17 @@ import styled from "styled-components";
 
 import useDocumentApi from "../hooks/api/useDocumentApi";
 import colors from "../lib/colors";
+import StatuteContainer from "./StatuteContainer";
 
 const Title = styled.div`
-  font-size: 36px;
-  padding-left: 20px;
+  font-size: 30px;
+  //padding-left: 20px;
   margin-bottom: 18px;
+  color: ${colors.highlightColor};
 `;
 
 const ResultContainer = styled.div`
-  margin: 54px 0;
+  margin: 24px 0;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -56,13 +58,16 @@ const DetailLink = styled.div`
 
 const RelateContents = ({ docKey, size = 5, target = "article" }) => {
   const [document, setDocument] = useState(null);
-  const { relatedDocument } = useDocumentApi();
+  const [statute, setStatute] = useState(null);
+  const { relatedDocument, relatedStatute } = useDocumentApi();
 
   useEffect(() => {
     const requestRelated = async () => {
-      const res = await relatedDocument(docKey, target, size)
-      setDocument(res);
-    }
+      const resDocument = await relatedDocument(docKey, target, size);
+      setDocument(resDocument);
+      const resStatute = await relatedStatute(docKey, target, 7);
+      setStatute(resStatute);
+    };
 
     if (docKey) {
       requestRelated();
@@ -71,7 +76,9 @@ const RelateContents = ({ docKey, size = 5, target = "article" }) => {
 
   return (
     <ResultContainer>
-      <Title>관련 법률</Title>
+      <Title>관련 법령</Title>
+      {statute && <StatuteContainer statuteList={statute.result} />}
+      <Title>관련 조항</Title>
       {document &&
         document.result.map((val, idx) => (
           <ResultItem key={idx}>

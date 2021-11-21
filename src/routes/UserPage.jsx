@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import UserDetail from "../components/UserDetail";
-
 
 const PageStyle = styled.div`
   display: flex;
@@ -14,7 +13,7 @@ const PageStyle = styled.div`
 const UserPage = () => {
   return (
     <PageStyle>
-      <UserDetail/>
+      <UserDetail />
     </PageStyle>
   );
 };
