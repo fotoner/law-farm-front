@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import styled from "styled-components";
 import { AiOutlineMail } from "react-icons/ai";
 
@@ -40,6 +41,9 @@ const UserInfo = styled.div`
 const UserDetail = ({ userInfo }) => {
   return (
     <UserInfo>
+      <Helmet>
+        <title>{userInfo.username} - 유저 페이지 - 로우팜</title>
+      </Helmet>
       <div className="username">{userInfo.username}</div>
       <div className="introduce">자기소개가 없습니다.</div>
       <div className="email">
