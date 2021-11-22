@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/law.fotone.moe/static/css/main.694dabd0.chunk.css",
-    "main.js": "/law.fotone.moe/static/js/main.7df0b360.chunk.js",
-    "main.js.map": "/law.fotone.moe/static/js/main.7df0b360.chunk.js.map",
-    "runtime-main.js": "/law.fotone.moe/static/js/runtime-main.82f6afe9.js",
-    "runtime-main.js.map": "/law.fotone.moe/static/js/runtime-main.82f6afe9.js.map",
-    "static/css/2.94fc249b.chunk.css": "/law.fotone.moe/static/css/2.94fc249b.chunk.css",
-    "static/js/2.dbfaf5aa.chunk.js": "/law.fotone.moe/static/js/2.dbfaf5aa.chunk.js",
-    "static/js/2.dbfaf5aa.chunk.js.map": "/law.fotone.moe/static/js/2.dbfaf5aa.chunk.js.map",
-    "index.html": "/law.fotone.moe/index.html",
-    "static/css/2.94fc249b.chunk.css.map": "/law.fotone.moe/static/css/2.94fc249b.chunk.css.map",
-    "static/css/main.694dabd0.chunk.css.map": "/law.fotone.moe/static/css/main.694dabd0.chunk.css.map",
-    "static/js/2.dbfaf5aa.chunk.js.LICENSE.txt": "/law.fotone.moe/static/js/2.dbfaf5aa.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.694dabd0.chunk.css",
+    "main.js": "/static/js/main.7df0b360.chunk.js",
+    "main.js.map": "/static/js/main.7df0b360.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e29b06e4.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e29b06e4.js.map",
+    "static/css/2.94fc249b.chunk.css": "/static/css/2.94fc249b.chunk.css",
+    "static/js/2.1a9933d6.chunk.js": "/static/js/2.1a9933d6.chunk.js",
+    "static/js/2.1a9933d6.chunk.js.map": "/static/js/2.1a9933d6.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.94fc249b.chunk.css.map": "/static/css/2.94fc249b.chunk.css.map",
+    "static/css/main.694dabd0.chunk.css.map": "/static/css/main.694dabd0.chunk.css.map",
+    "static/js/2.1a9933d6.chunk.js.LICENSE.txt": "/static/js/2.1a9933d6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.82f6afe9.js",
+    "static/js/runtime-main.e29b06e4.js",
     "static/css/2.94fc249b.chunk.css",
-    "static/js/2.dbfaf5aa.chunk.js",
+    "static/js/2.1a9933d6.chunk.js",
     "static/css/main.694dabd0.chunk.css",
     "static/js/main.7df0b360.chunk.js"
   ]
