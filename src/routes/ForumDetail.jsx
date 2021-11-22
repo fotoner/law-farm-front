@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import Helmet from "react-helmet";
 
 import { AiOutlineBulb, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
@@ -59,6 +59,9 @@ const MainContent = styled.div`
     justify-content: space-between;
     align-items: center;
     color: ${colors.fontGrey};
+    a {
+      color: ${colors.fontGrey};
+    }
   }
   .viewerWrapper {
     width: 100%;
@@ -104,7 +107,7 @@ const MainContent = styled.div`
 const ForumDetail = () => {
   const [jwt] = useRecoilState(jwtState);
   const history = useHistory();
-  const { ToastFail } = useToast();
+  const { ToastFail, ToastSuccess } = useToast();
   const { key } = useParams();
 
   const [article, setArticle] = useState(null);
@@ -135,9 +138,15 @@ const ForumDetail = () => {
 
   const handleLike = useCallback(async () => {
     if (liked) {
-      await removeForumLike(key);
+      const res = await removeForumLike(key);
+      if (res) {
+        ToastSuccess("좋아요를 취소했습니다");
+      }
     } else {
-      await addForumLike(key);
+      const res = await addForumLike(key);
+      if (res) {
+        ToastSuccess("좋아요 성공!");
+      }
     }
     setReloaded(false);
   }, [liked, key]);
@@ -152,7 +161,9 @@ const ForumDetail = () => {
           <MainContent>
             <h1 className="title">{article.title}</h1>
             <div className="subtitle">
-              <div className="left">작성자: {article.user.username}</div>
+              <Link to={`/userpage/@${article.user.id}`} className="left">
+                작성자: {article.user.username}
+              </Link>
               <div className="right">{article.created_at.slice(0, 10)}</div>
             </div>
             <div className="viewerWrapper">

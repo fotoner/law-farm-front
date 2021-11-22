@@ -101,7 +101,9 @@ const ResultItem = styled.div`
       }
       .right {
         font-size: 14px;
-        color: ${colors.highlightColor};
+        a {
+          color: ${colors.highlightColor};
+        }
       }
     }
   }
@@ -257,7 +259,9 @@ const ForumList = () => {
                     <div className="date">{val.created_at.slice(0, 10)}</div>
                   </div>
                   <div className="right">
-                    <div className="user">{val.user.username}</div>
+                    <Link to={`/userpage/@${val.user.id}`} className="user">
+                      {val.user.username}
+                    </Link>
                   </div>
                 </div>
               </div>

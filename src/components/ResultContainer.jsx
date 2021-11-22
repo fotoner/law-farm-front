@@ -56,7 +56,8 @@ const ResultContainer = ({ articleList }) => {
               <div className="title">{val.name}</div>
               <div className="content">
                 <div className="type">
-                  {val.about.text.length > 0
+                  {val.about.text.length > 0 &&
+                  val.about.text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)
                     ? val.about.text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]
                     : val.about.text}
                 </div>

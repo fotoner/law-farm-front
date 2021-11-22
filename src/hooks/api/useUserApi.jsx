@@ -14,7 +14,20 @@ const useUserApi = () => {
     return result.data;
   }, [getAxios]);
 
-  return { getUserInfo };
+  const getOtherUserInfo = useCallback(
+    async (userId) => {
+      const result = await requestWrapper(getAxios().get(`/users/@${userId}`));
+
+      if (!result || result.status !== 200) {
+        return null;
+      }
+
+      return result.data;
+    },
+    [getAxios]
+  );
+
+  return { getUserInfo, getOtherUserInfo };
 };
 
 export default useUserApi;

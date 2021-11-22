@@ -28,7 +28,6 @@ const MyPage = () => {
     const loadUserInfo = async () => {
       const res = await getUserInfo();
 
-      console.log(res);
       setUserInfo(res);
     };
 

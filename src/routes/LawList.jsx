@@ -65,6 +65,7 @@ const NavList = styled.div`
   a.selected {
     font-weight: bold;
     color: ${colors.highlightColor};
+    background-color: ${colors.lightColor}70;
   }
 `;
 
@@ -224,7 +225,9 @@ const LawList = () => {
                   <div className="title">{val.fullname}</div>
                   <div className="content">
                     <div className="type">
-                      {val.text.length > 0
+                      {val.text &&
+                      val.text.length > 0 &&
+                      val.text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)
                         ? val.text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]
                         : val.text}
                     </div>

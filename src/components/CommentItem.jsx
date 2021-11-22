@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Viewer } from "@toast-ui/react-editor";
 import colors from "../lib/colors";
+import { Link } from "react-router-dom";
 
 const CommentStyle = styled.div`
   width: 100%;
@@ -24,7 +25,9 @@ const Username = styled.h1`
   margin: 0;
   font-size: 20px;
   font-weight: normal;
-  color: ${colors.highlightColor};
+  a {
+    color: ${colors.highlightColor};
+  }
 `;
 
 const Date = styled.div`
@@ -36,7 +39,11 @@ const CommentItem = ({ comment }) => {
   return (
     <CommentStyle>
       <Header>
-        <Username>{comment.user.username}</Username>
+        <Username>
+          <Link to={`/userpage/@${comment.user.id}`}>
+            {comment.user.username}
+          </Link>
+        </Username>
         <Date>{comment.created_at.slice(0, 10)}</Date>
       </Header>
 
