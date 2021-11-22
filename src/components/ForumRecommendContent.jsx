@@ -5,6 +5,7 @@ import useForumApi from "../hooks/api/useForumApi";
 import ResultContainer from "./ResultContainer";
 
 import colors from "../lib/colors";
+import StatuteContainer from "./StatuteContainer";
 
 const PageStyle = styled.div`
   //min-height: 100vh;
@@ -23,14 +24,18 @@ const Title = styled.h1`
 
 const ForumRecommendContent = ({ forumId }) => {
   const [articleList, setArticleList] = useState(null);
+  const [statuteList, setStatuteList] = useState(null);
   const [reloaded, setReloaded] = useState(false);
 
-  const { getRecommendArticle } = useForumApi();
+  const { getRecommendArticle, getRecommendStatue } = useForumApi();
 
   useEffect(() => {
     const loadContent = async () => {
       const articleRes = await getRecommendArticle(forumId);
       setArticleList(articleRes);
+
+      const statuteRes = await getRecommendStatue(forumId);
+      setStatuteList(statuteRes);
 
       setReloaded(true);
     };
@@ -42,7 +47,11 @@ const ForumRecommendContent = ({ forumId }) => {
 
   return (
     <PageStyle>
-      <Title>관련 법률</Title>
+      <Title>관련 법령</Title>
+      {statuteList && (
+        <StatuteContainer statuteList={statuteList.result.slice(0, 5)} />
+      )}
+      <Title>관련 조항</Title>
       {articleList && <ResultContainer articleList={articleList.result} />}
     </PageStyle>
   );
