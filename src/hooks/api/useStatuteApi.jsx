@@ -16,7 +16,6 @@ const useStatuteApi = () => {
 
   const getStatute = useCallback(
     async (key, skip = 0, limit = 10) => {
-      console.log(limit);
       const result = await requestWrapper(
         getAxios().get(`/laws/statute/@${key}`, {
           params: {

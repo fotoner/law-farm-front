@@ -16,6 +16,7 @@ import { useRecoilState } from "recoil";
 import { JWT_CODE, jwtState } from "../recoil/user";
 import useToast from "../hooks/useToast";
 import ForumRecommendContent from "../components/ForumRecommendContent";
+import ForumComment from "../components/ForumComment";
 
 const PageStyle = styled.div`
   position: absolute;
@@ -172,6 +173,7 @@ const ForumDetail = () => {
               </div>
             </div>
           </MainContent>
+          <ForumComment forumId={key} />
           <ForumRecommendContent forumId={key} />
         </MainWrapper>
       )}

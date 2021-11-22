@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Helmet from "react-helmet";
 
 import styled from "styled-components";
@@ -23,6 +23,25 @@ const ArticleHeader = styled.div`
   width: 100%;
   align-items: center;
   justify-content: space-between;
+
+  .right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .statuteLink {
+      font-size: 15px;
+      margin-right: 16px;
+      border-radius: 36px;
+      padding: 2px 16px;
+      border: solid 2px ${colors.highlightColor};
+      color: ${colors.highlightColor};
+      transition: background-color 0.15s, color 0.15s;
+      :hover {
+        border: solid 2px ${colors.lightColor};
+        color: ${colors.lightColor};
+      }
+    }
+  }
 `;
 
 const Title = styled.h1`
@@ -100,14 +119,24 @@ const ContentsDetailBass = ({ contentsType }) => {
       <ContentsBody>
         <ArticleHeader>
           <Title>{key}</Title>
-          {user && (
-            <LikeButton
-              contentsKey={key}
-              contentsType={contentsType}
-              bookmarkState={isBookmark}
-              bookmarkHandler={setIsBookmark}
-            />
-          )}
+          <div className="right">
+            {contents && (
+              <Link
+                to={`/laws/@${contents.result.statute}?page=1`}
+                className="statuteLink"
+              >
+                '{contents.result.statute}' 전체 보기
+              </Link>
+            )}
+            {user && (
+              <LikeButton
+                contentsKey={key}
+                contentsType={contentsType}
+                bookmarkState={isBookmark}
+                bookmarkHandler={setIsBookmark}
+              />
+            )}
+          </div>
         </ArticleHeader>
         <Text>
           {contents &&

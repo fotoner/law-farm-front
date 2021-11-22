@@ -141,6 +141,53 @@ const useForumApi = () => {
     [getAxios]
   );
 
+  const loadCommentList = useCallback(
+    async (forumId) => {
+      const result = await requestWrapper(
+        getAxios().get(`/forums/@${forumId}/comment`)
+      );
+
+      if (!result || result.status !== 200) {
+        return null;
+      }
+
+      return result.data;
+    },
+    [getAxios]
+  );
+
+  const addComment = useCallback(
+    async (forumId, main) => {
+      const result = await requestWrapper(
+        getAxios().post(`/forums/@${forumId}/comment`, {
+          main: main,
+        })
+      );
+
+      if (!result || result.status !== 200) {
+        return null;
+      }
+
+      return result.data;
+    },
+    [getAxios]
+  );
+
+  const removeComment = useCallback(
+    async (forumId) => {
+      const result = await requestWrapper(
+        getAxios().delete(`/forums/@${forumId}/comment`)
+      );
+
+      if (!result || result.status !== 200) {
+        return null;
+      }
+
+      return result.data;
+    },
+    [getAxios]
+  );
+
   return {
     loadForumList,
     loadDetail,
@@ -150,6 +197,9 @@ const useForumApi = () => {
     removeForumLike,
     getRecommendStatue,
     getRecommendArticle,
+    loadCommentList,
+    addComment,
+    removeComment,
   };
 };
 

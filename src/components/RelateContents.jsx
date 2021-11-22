@@ -92,7 +92,7 @@ const RelateContents = ({ docKey, size = 5, target = "article" }) => {
                 </div>
                 <div className="paragraphCount">
                   {val.about.paragraphs.length > 0
-                    ? `*${val.about.paragraphs.length}개의 보조항 존재*`
+                    ? `*${val.about.paragraphs.length}개의 항 존재*`
                     : ""}
                 </div>
               </div>

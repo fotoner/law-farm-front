@@ -124,7 +124,9 @@ const Logs = () => {
                 <Link to={`/${content_type}/@${content_key}`}>
                   <div className="title">{content_key}</div>
                   <div className="content">
-                    <div>{text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]}</div>
+                    <div>
+                      {text && text.match(/(\((.*?)\)| 삭제 <(.*?)>)/g)[0]}
+                    </div>
                     <div className="date">
                       열람일자: {created_at.slice(0, 10)}
                     </div>

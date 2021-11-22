@@ -12,7 +12,7 @@ import UserMenu from "../input/UserMenu";
 const Navbar = styled.nav`
   display: flex;
   position: fixed;
-  z-index: 999;
+  z-index: 800;
   width: 100%;
   height: 64px;
   min-height: 64px;

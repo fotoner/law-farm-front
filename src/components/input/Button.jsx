@@ -7,7 +7,7 @@ const ButtonStyle = styled.button`
   font-weight: bold;
   background-color: ${colors.highlightColor};
   color: #fff;
-  border-radius: 0.5rem;
+  border-radius: 20px;
   cursor: pointer;
   border: 0 solid;
 
@@ -21,8 +21,8 @@ const ButtonStyle = styled.button`
   }
 `;
 
-const Button = ({ children }) => {
-  return <ButtonStyle>{children}</ButtonStyle>;
+const Button = ({ children, onClick }) => {
+  return <ButtonStyle onClick={onClick}>{children}</ButtonStyle>;
 };
 
 export default Button;

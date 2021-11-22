@@ -27,8 +27,6 @@ import NotFound from "./routes/NotFound";
 import useUserRecoil from "./hooks/auth/useUserRecoil";
 import useJwtExpire from "./hooks/auth/useJwtExpire";
 
-import colors from "./lib/colors";
-
 const Main = styled.div`
   display: flex;
   flex-direction: column;

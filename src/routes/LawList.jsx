@@ -219,8 +219,8 @@ const LawList = () => {
         <ResultBox>
           {statuteList &&
             statuteList.result.map((val) => (
-              <ResultItem>
-                <Link key={val.fullname} to={`/article/@${val.fullname}`}>
+              <ResultItem key={val.fullname}>
+                <Link to={`/article/@${val.fullname}`}>
                   <div className="title">{val.fullname}</div>
                   <div className="content">
                     <div className="type">
